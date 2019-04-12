@@ -237,18 +237,8 @@ a.btn-card {
     align-items: center;
 }
 
-/* End card section */
-.map{
-    position: relative;
-    text-align: center;
-}
-svg{
-    position: relative;
-
-}
-
 .part {
-	opacity: 0;
+	opacity: .3;
 }
 
 .part:hover {
@@ -256,3 +246,5 @@ svg{
 	opacity: .5;
 	cursor: pointer;
 }
+
+/* End card section */
