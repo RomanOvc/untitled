@@ -1,4 +1,5 @@
 <!-- templates/home.html -->
+
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
@@ -7,19 +8,37 @@
     {% if user.is_authenticated %}
         {% if user.is_superuser %}
             Hi {{ user.username }}!
-            {% include "registration/room_user.html" %}
+            {#            {% include "admin_panel.html" %}#}
             <p><a href="{% url 'logout' %}">logout</a></p>
-
+            <p><a href="{% url 'admin_panel' %}">All news</a></p>
+            <p><a href="{% url 'admin_panel/create' %}"> Create new</a></p>
         {% else %}
             Hi  sdfsfsfsfasd {{ user.username }}!
             {% include "registration/room_user.html" %}
             <p><a href="{% url 'logout' %}">logout</a></p>
         {% endif %}
     {% else %}
-        <p>You are not logged in</p>
+        <div class="container">
+            <div class="map">
+{#                <style>#}
+{#                    .part {#}
+{#                        opacity: 0;#}
+{#                    }#}
+{#                    .part:hover {#}
+{#                        transition: opacity .2s ease;#}
+{#                        opacity: .5;#}
+{#                        cursor: pointer;#}
+{#                    }#}
+{#                </style>#}
+                <svg id="svg1" viewBox="0 0 794 1037">
+                    <image xlink:href="../media/images/image7558.jpg"></image>
+                    <path class="part"
+                          d="m 4.3940678,72.502118 c 77.9947032,0 79.0932202,0 79.0932202,0 V 232.88559 H 5.4925848 V 70.305084 Z"></path>
+                </svg>
 
+            </div>
+        </div>
         <a href="{% url 'login' %}">login</a> |
         <a href="{% url 'signup' %}">signup</a>
-
     {% endif %}
 {% endblock %}
