@@ -30,4 +30,4 @@ urlpatterns = [
     path('home/', TemplateView.as_view(template_name='home.html'), name='home'),  # new
     path('index/', views.index, name='index'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_PATH)

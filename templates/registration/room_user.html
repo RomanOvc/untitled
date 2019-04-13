@@ -1,5 +1,285 @@
 
 
 {% block  content %}
-    <button><a href="">Кабинет</a></button>
+    <div class="container">
+        <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sector: </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mpa2">
+                            <svg id="svg1" viewBox="0 0 933 1056">
+                                <image xlink:href="../static/images/sector.png"></image>
+                                <path data-row="10" data-site="1" id="sit_1_10" class="part"
+                                      d="m 137.63414,1.5959236 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.3540754 -72.77207,0.395501 z"></path>
+                                <path data-row="10" data-site="2" id="sit_1_10" class="part"
+                                      d="m 229.78573,1.2004232 c 71.58557,0 71.58557,0 71.58557,0 L 302.1623,75.554499 229.39023,75.95 Z"></path>
+                                <path data-row="10" data-site="3" id="sit_1_10" class="part"
+                                      d="m 319.16882,0.8049228 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.3540762 -72.77207,0.395501 z"></path>
+                                <path data-row="10" data-site="4" id="sit_1_10" class="part"
+                                      d="m 410.92491,0.8049228 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.3540762 -72.77207,0.395501 z"></path>
+                                <path data-row="10" data-site="5" id="sit_1_10" class="part"
+                                      d="m 499.1215,0.4094224 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.3540766 L 498.726,75.159 Z"></path>
+                                <path data-row="10" data-site="6" id="sit_1_10" class="part"
+                                      d="m 588.90009,0.4094224 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.3540766 -72.77207,0.395501 z"></path>
+                                <path data-row="10" data-site="7" id="sit_1_10" class="part"
+                                      d="m 678.67868,0.8049228 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.3540762 -72.77207,0.395501 z"></path>
+                                <path data-row="10" data-site="8" id="sit_1_10" class="part"
+                                      d="m 770.83027,1.2004232 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.3540758 L 770.43477,75.95 Z"></path>
+                                <path data-row="10" data-site="9" id="sit_1_10" class="part"
+                                      d="M 861.41443,0 C 933,0 933,0 933,0 l 0.791,74.354076 -72.77207,0.395501 z"></path>
+
+                                <path data-row="9" data-site="1" id="sit_1_9" class="part"
+                                      d="m 138.8352,98.479601 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.354079 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="2" id="sit_1_9" class="part"
+                                      d="m 229.80029,98.875101 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.354079 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="3" id="sit_1_9" class="part"
+                                      d="m 319.18338,99.270601 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.354079 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="4" id="sit_1_9" class="part"
+                                      d="m 410.93947,98.875101 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.354079 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="5" id="sit_1_9" class="part"
+                                      d="m 499.53156,98.479601 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.354079 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="6" id="sit_1_9" class="part"
+                                      d="m 590.10115,97.6886 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="7" id="sit_1_9" class="part"
+                                      d="m 678.29774,98.0841 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="8" id="sit_1_9" class="part"
+                                      d="m 771.63584,98.875101 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.354079 -72.77207,0.3955 z"></path>
+                                <path data-row="9" data-site="9" id="sit_1_9" class="part"
+                                      d="m 860.62343,98.875101 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.354079 -72.77207,0.3955 z"></path>
+
+                                <path data-row="8" data-site="1" id="sit_1_8" class="part"
+                                      d="m 138.0442,196.9592 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="2" id="sit_1_8" class="part"
+                                      d="m 229.80029,197.3547 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="3" id="sit_1_8" class="part"
+                                      d="m 318.78788,196.5637 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="4" id="sit_1_8" class="part"
+                                      d="m 410.14847,197.7502 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="5" id="sit_1_8" class="part"
+                                      d="m 499.13606,196.1682 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="6" id="sit_1_8" class="part"
+                                      d="m 589.31015,195.7727 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="7" id="sit_1_8" class="part"
+                                      d="m 679.08874,195.7727 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="8" id="sit_1_8" class="part"
+                                      d="m 771.63583,197.7502 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+                                <path data-row="8" data-site="9" id="sit_1_8" class="part"
+                                      d="m 860.22792,197.3547 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+
+                                <path data-row="7" data-site="1" id="sit_1_7" class="part"
+                                      d="m 138.0442,293.75871 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="2" id="sit_1_7" class="part"
+                                      d="m 228.61379,294.15421 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="3" id="sit_1_7" class="part"
+                                      d="m 319.18338,293.75871 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="4" id="sit_1_7" class="part"
+                                      d="m 410.54397,293.75871 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="5" id="sit_1_7" class="part"
+                                      d="m 499.53156,293.75871 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="6" id="sit_1_7" class="part"
+                                      d="m 589.70565,292.96771 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="7" id="sit_1_7" class="part"
+                                      d="m 679.08874,292.96771 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="8" id="sit_1_7" class="part"
+                                      d="m 771.63583,294.54971 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="7" data-site="9" id="sit_1_7" class="part"
+                                      d="m 861.01892,293.8568 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.35408 -72.77207,0.3955 z"></path>
+
+                                <path data-row="6" data-site="1" id="sit_1_6" class="part"
+                                      d="m 138.0442,395.00681 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="2" id="sit_1_6" class="part"
+                                      d="m 229.00929,395.00681 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="3" id="sit_1_6" class="part"
+                                      d="m 318.78788,395.00681 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="4" id="sit_1_6" class="part"
+                                      d="m 410.14847,394.61131 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="5" id="sit_1_6" class="part"
+                                      d="m 499.53156,394.21581 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="6" id="sit_1_6" class="part"
+                                      d="m 589.31015,394.21581 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="7" id="sit_1_6" class="part"
+                                      d="m 678.69324,394.61131 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="8" id="sit_1_6" class="part"
+                                      d="m 771.24033,395.40231 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+                                <path data-row="6" data-site="9" id="sit_1_6" class="part"
+                                      d="m 860.62342,394.61131 c 71.58557,0 71.58557,0 71.58557,0 l 0.791,74.84506 -72.77207,0.39811 z"></path>
+
+                                <path data-row="5" data-site="1" id="sit_1_5" class="part"
+                                      d="m 139.23127,492.88947 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="2" id="sit_1_5" class="part"
+                                      d="m 230.59186,492.88947 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="3" id="sit_1_5" class="part"
+                                      d="m 319.57945,492.49397 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="4" id="sit_1_5" class="part"
+                                      d="m 410.94004,493.28497 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="5" id="sit_1_5" class="part"
+                                      d="m 499.92763,492.49397 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="6" id="sit_1_5" class="part"
+                                      d="m 590.10172,492.49397 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="7" id="sit_1_5" class="part"
+                                      d="m 679.88031,492.09847 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="8" id="sit_1_5" class="part"
+                                      d="m 772.0319,493.28497 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="5" data-site="9" id="sit_1_5" class="part"
+                                      d="m 861.01949,493.68047 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+
+                                <path data-row="4" data-site="1" id="sit_1_4" class="part"
+                                      d="m 138.83577,589.78707 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="2" id="sit_1_4" class="part"
+                                      d="m 229.80086,589.78707 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="3" id="sit_1_4" class="part"
+                                      d="m 320.76595,589.78707 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="4" id="sit_1_4" class="part"
+                                      d="m 411.33554,588.99607 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="5" id="sit_1_4" class="part"
+                                      d="m 499.92763,588.99607 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="6" id="sit_1_4" class="part"
+                                      d="m 590.49722,588.99607 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="7" id="sit_1_4" class="part"
+                                      d="m 679.48481,588.60057 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="8" id="sit_1_4" class="part"
+                                      d="m 772.0319,589.78707 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="4" data-site="9" id="sit_1_4" class="part"
+                                      d="m 861.81049,589.39157 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+
+                                <path data-row="3" data-site="1" id="sit_1_3" class="part"
+                                      d="m 140.41777,688.66217 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="2" id="sit_1_3" class="part"
+                                      d="m 231.38286,687.87117 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="3" id="sit_1_3" class="part"
+                                      d="m 321.55695,688.66217 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="4" id="sit_1_3" class="part"
+                                      d="m 412.52204,688.66217 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="5" id="sit_1_3" class="part"
+                                      d="m 500.71863,688.26667 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="6" id="sit_1_3" class="part"
+                                      d="m 591.68372,687.87117 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="7" id="sit_1_3" class="part"
+                                      d="m 680.27581,688.26667 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="8" id="sit_1_3" class="part"
+                                      d="m 773.2184,688.66217 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="3" data-site="9" id="sit_1_3" class="part"
+                                      d="m 861.81049,688.66217 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+
+                                <path data-row="2" data-site="1" id="sit_1_2" class="part"
+                                      d="m 138.83576,790.70127 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="2" id="sit_1_2" class="part"
+                                      d="m 230.59185,790.70127 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="3" id="sit_1_2" class="part"
+                                      d="m 319.97494,790.70127 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="4" id="sit_1_2" class="part"
+                                      d="m 411.73103,791.09677 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="5" id="sit_1_2" class="part"
+                                      d="m 499.92762,790.30577 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="6" id="sit_1_2" class="part"
+                                      d="m 589.70621,789.91027 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="7" id="sit_1_2" class="part"
+                                      d="m 679.0893,789.91027 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="8" id="sit_1_2" class="part"
+                                      d="m 772.4274,790.70127 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="2" data-site="9" id="sit_1_2" class="part"
+                                      d="m 861.01949,791.09677 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+
+                                <path data-row="1" data-site="1" id="sit_1_1" class="part"
+                                      d="m 139.62676,889.57637 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="1" data-site="2" id="sit_1_1" class="part"
+                                      d="m 230.98735,889.57637 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="1" data-site="3" id="sit_1_1" class="part"
+                                      d="m 321.16144,889.18087 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="1" data-site="4" id="sit_1_1" class="part"
+                                      d="m 411.73103,889.18087 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="1" data-site="5" id="sit_1_1" class="part"
+                                      d="m 501.50962,889.18087 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="1" data-site="6" id="sit_1_1" class="part"
+                                      d="m 590.49721,888.78537 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.42572 -70.44801,0.4012 z"></path>
+                                <path data-row="1" data-site="7" id="sit_1_1" class="part"
+                                      d="m 681.4623,888.77895 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.43211 -70.44801,0.40123 z"></path>
+                                <path data-row="1" data-site="8" id="sit_1_1" class="part"
+                                      d="m 773.61389,889.56995 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.43211 -70.44801,0.40123 z"></path>
+                                <path data-row="1" data-site="9" id="sit_1_1" class="part"
+                                      d="m 862.60148,889.56995 c 69.2994,0 69.2994,0 69.2994,0 l 0.76574,75.43211 -70.44801,0.40123 z"></path>
+
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map">
+
+            <svg id="svg1" viewBox="0 0 794 1037">
+                <image xlink:href="../static/images/image7558.jpg"></image>
+
+                <path data-sector="B101" id="part1" class="part"
+                      d="m 4.3940678,72.502118 c 77.9947032,0 79.0932202,0 79.0932202,0 V 232.88559 H 5.4925848 V 70.305084 Z"></path>
+
+                <path data-sector="B102" id="part2" class="part"
+                      d="m 112.50472,73.984079 c 42.49499,0 74.2898,0 74.2898,0 V 234.18101 h -74.90124 z"></path>
+
+                <path data-sector="B103" class="part"
+                      d="m 214.30736,74.595519 h 75.20696 L 288.29914,232.3467 h -73.98408 z"></path>
+
+                <path data-sector="B104" class="part"
+                      d="m 319.47481,74.595519 h 75.20696 L 393.46659,232.3467 h -73.98408 z"></path>
+
+                <path data-sector="B105" class="part"
+                      d="m 419.13931,73.372642 h 75.20696 l -1.21518,157.751178 h -73.98408 z"></path>
+
+                <path data-sector="B106" class="part"
+                      d="m 515.13518,73.984081 h 75.20696 l -1.21518,157.751179 h -73.98408 z"></path>
+
+                <path data-sector="B107" class="part"
+                      d="m 616.634,73.984081 h 75.20696 L 690.62578,231.73526 H 616.6417 Z"></path>
+
+                <path data-sector="B108" class="part"
+                      d="m 711.71462,73.98408 h 75.20696 V 231.73526 H 712.9375 Z"></path>
+
+                <path data-sector="B109" class="part"
+                      d="m 708.96124,804.04186 h 75.20696 l -1.21518,157.75118 h -73.98408 z"></path>
+
+                <path data-sector="B110" class="part"
+                      d="m 612.96537,804.04186 h 75.20696 l -1.21518,157.75118 h -73.98408 z"></path>
+
+                <path data-sector="B111" class="part"
+                      d="m 512.07799,803.43042 h 75.20696 l -1.21518,157.75118 h -73.98408 z"></path>
+
+                <path data-sector="B112" class="part"
+                      d="m 415.47068,802.81898 h 75.20696 l -1.21518,157.75118 h -73.98408 z"></path>
+
+                <path data-sector="B113" class="part"
+                      d="m 317.02905,804.6533 h 75.20696 l -1.21518,157.75118 h -73.98408 z"></path>
+
+                <path data-sector="B114" class="part"
+                      d="m 210.02728,804.6533 h 75.20696 l -1.21518,157.75118 h -73.98408 z"></path>
+
+                <path data-sector="B115" class="part"
+                      d="m 109.1399,804.04186 h 75.20696 l -1.21518,157.75118 H 109.1476 Z"></path>
+
+                <path data-sector="B116" class="part"
+                      d="M 3.3610084,804.04186 H 78.567968 l -1.21518,157.75118 H 3.3687084 Z"></path>
+            </svg>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(() => {
+            alert('Hello, World!');
+            $(".part").click((elem) => {
+                $('#exampleModal').modal({})
+                //alert(elem.target.dataset.lol)
+            });
+        });
+    </script>
 {% endblock %}

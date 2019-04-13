@@ -17,3 +17,14 @@ class Blogs(models.Model):
 
     def __str__(self):
         return self.title
+
+# Demo Buy ticket
+# class Buy(models.Model):
+#     id_match = models.IntegerField(primary_key=Match)
+#     seson = models.DateField()
+#     mail_user = models.CharField()
+#     sector = models.IntegerField()
+#     row = models.IntegerField()
+#     site = models.IntegerField()
+#     price = models.IntegerField()
+#     data = models.DateTimeField(auto_now_add=True)
