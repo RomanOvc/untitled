@@ -273,13 +273,52 @@
 
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(() => {
-            alert('Hello, World!');
-            $(".part").click((elem) => {
-                $('#exampleModal').modal({})
-                //alert(elem.target.dataset.lol)
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            $("path");
+
+            var selectedSeats = "LOOOOOOOOOOOOOL";
+
+            $('#exampleModal').on('hidden.bs.modal', (e) => {
+                $("*[data-sector]").removeAttr("selected");
+                $("*[data-site]").removeClass("part");
+                $("*[data-site]").addClass("part");
+            });
+
+            function eventHandler(event) {
+                $('#exampleModal').modal({});
+                $(event.target).attr("selected", "1");
+            }
+
+
+            var handlers = {
+                selectedSeats: "LOL",
+                click: eventHandler
+            };
+
+            $("*[data-sector]").click(jQuery.proxy(handlers.click, handlers));
+
+
+            $("*[data-row]").click(selectedSeats, (event) => {
+                var sector = $("*[selected]").data("sector");
+                var row = $(event.target).data("row");
+                var seat = $(event.target).data("site");
+
+                alert("sector:" + sector + " Row:" + row + " seat:" + seat);
+                if ($(event.target).hasClass("part")) {
+                    $(event.target).removeClass("part");
+                } else {
+                    $(event.target).addClass("part");
+                }
+
+
             });
         });
+
     </script>
+
 {% endblock %}

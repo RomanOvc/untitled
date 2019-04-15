@@ -2,6 +2,11 @@
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$/db.sqlite3" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/templates/boss.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates/header/administration.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates/header/bosss.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates/header/contact.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates/header/history_club.html" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1251" />
   </component>
 </project>

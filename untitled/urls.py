@@ -21,13 +21,16 @@ from django.views.generic import TemplateView
 
 from accounts import views
 
-
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),  # new
-    path('home/', TemplateView.as_view(template_name='home.html'), name='home'),  # new
-    path('index/', views.index, name='index'),
+                  path('admin/', admin.site.urls),
+                  path('accounts/', include('accounts.urls')),
+                  path('accounts/', include('django.contrib.auth.urls')),  # new
+                  path('home/', TemplateView.as_view(template_name='home.html'), name='home'),  # new
+                  path('index/', views.index, name='index'),
+                  path('boss/', views.boss, name='boss'),
+                  path('administration/', views.administration, name='administration'),
+                  path('contacts/', views.contact, name='contacts'),
+                  path('history/', views.history, name='history'),
+                  path('', views.index1)
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_PATH)

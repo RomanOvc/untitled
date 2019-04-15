@@ -239,15 +239,19 @@ a.btn-card {
 
 .part {
 	opacity: 0;
+
 }
 
 .part:hover {
 	transition: opacity .1s ease;
 	opacity: .5;
 	cursor: pointer;
+
+}
+path:hover{
+    fill: red;
 }
 
-.mapa{
-    background-color: #0E2231;
-}
+
+
 /* End card section */

@@ -67,3 +67,6 @@ def delete(request, id):
 
 def success(request):
     return HttpResponse('successfuly upload')
+
+
+
