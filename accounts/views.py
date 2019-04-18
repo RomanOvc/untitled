@@ -44,3 +44,7 @@ def contact(request):
 
 def history(request):
     return render(request, "header/history_club.html")
+
+
+def all_news(request):
+    return render(request, "header/all_news.html")

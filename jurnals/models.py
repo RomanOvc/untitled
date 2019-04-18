@@ -18,6 +18,21 @@ class Blogs(models.Model):
     def __str__(self):
         return self.title
 
+
+class Video(models.Model):
+    """Model video"""
+
+    class Meta():
+        ordering = ["-create"]
+
+    title_v = models.CharField(max_length=50)
+    video_url = models.TextField()
+    create = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title_v
+
 # Demo Buy ticket
 # class Buy(models.Model):
 #     id_match = models.IntegerField(primary_key=Match)

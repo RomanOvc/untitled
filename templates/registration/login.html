@@ -3,12 +3,53 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h2>Login</h2>
+
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-        <a href="{% url 'signup' %}">signup</a>
 
+
+        {#    </form>#}
+        {#    <a href="{% url 'signup' %}">signup</a>#}
+        {##}
+        {#    </form>#}
+        <div class="login-wrap">
+            <div class="login-html">
+                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+                                                                                         class="tab"></label>
+                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"><a
+                    href="{% url 'signup' %}"></a></label>
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="id_username" class="label">Username</label>
+                            <input id="id_username" type="text" name="username" autofocus required class="input">
+                        </div>
+                        <div class="group">
+                            <label for="id_password" class="label">Password</label>
+                            <input id="pass" type="password" class="input" data-type="password" name="password" required
+                                   id="id_password">
+                        </div>
+                        <div class="group">
+                            <input id="check" type="checkbox" class="check" checked>
+                            <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Login">
+                        </div>
+
+
+                        <div class="hr"></div>
+                        <div class="group">
+                            <a href="{% url 'signup' %}" class="button btn btn-outline-primary" >Sign Up?</a>
+                        </div>
+                        <div class="foot-lnk">
+
+                            <a href="#forgot">Forgot Password?</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </form>
 {% endblock %}

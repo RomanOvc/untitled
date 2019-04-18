@@ -4,22 +4,82 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-    <div class="container">
+
         <div class="row">
-            <div class="col-s-7">
+
+            <div class="col-md-7" style="background-color: #e6e6e6">
                 <div class="container">
-                    <img src="http://bm.img.com.ua/img/prikol/images/large/0/0/307600.jpg">
+                    <img src="https://www.h-hotels.com/_Resources/Persistent/4ca9fe3e4f433fd4f5d26f6e9423d227718acb49/sport-73-1200x800.jpg"
+                         alt="" style="width: 90%">
                 </div>
             </div>
-            <div class="col-sm-5">
-                <h2>Sign up</h2>
+
+            <div class="col-md-5" style="background-color: #e6e6e6">
+
+                <h2 align="center">Sign up</h2>
                 <form method="post">
                     {% csrf_token %}
+                    <div class="maint">
+                        <div class="field">
+                            <p><label for="id_username" class="label_sign">Username:</label> <input type="text"
+                                                                                                    name="username"
+                                                                                                    maxlength="150"
+                                                                                                    autofocus required
+                                                                                                    id="id_username">
+                            </p>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <p><label for="id_first_name" class="label_sign">First name:</label> <input type="text"
+                                                                                                        name="first_name"
+                                                                                                        maxlength="30"
+                                                                                                        id="id_first_name">
+                            </p>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <p><label for="id_last_name" class="label_sign">Last name:</label> <input type="text"
+                                                                                                      name="last_name"
+                                                                                                      maxlength="150"
+                                                                                                      id="id_last_name">
+                            </p>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <p><label for="id_email" class="label_sign">Email address:</label> <input type="email"
+                                                                                                      name="email"
+                                                                                                      maxlength="254"
+                                                                                                      id="id_email"></p>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <p><label for="id_phone" class="label_sign">Phone:</label> <input type="text" name="phone"
+                                                                                              required
+                                                                                              id="id_phone">
+                            </p>
+                        </div>
 
-                    {{ form.as_p }}
-                    <button type="submit">Sign up</button>
+                        <br>
+                        <div class="field">
+                            <p><label for="id_password1" class="label_sign">Password:</label> <input type="password"
+                                                                                                     name="password1"
+                                                                                                     required
+                                                                                                     id="id_password1">
+                            </p>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <p><label for="id_password2" class="label_sign">Password confirmation:</label> <input
+                                    type="password" name="password2"
+                                    required id="id_password2"></p>
+                            <br>
+                        </div>
+                        <div class="field">
+                            <button class="btn btn-outline-primary" type="submit">Sign Up</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
-    </div>
+
 {% endblock %}

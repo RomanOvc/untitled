@@ -31,6 +31,7 @@ urlpatterns = [
                   path('administration/', views.administration, name='administration'),
                   path('contacts/', views.contact, name='contacts'),
                   path('history/', views.history, name='history'),
-                  path('', views.index1)
+                  path('', views.index1),
+                  path('all_news/', views.all_news, name='all_news')
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_PATH)

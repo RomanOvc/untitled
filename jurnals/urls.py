@@ -12,6 +12,10 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete),
     path('success/', success, name='success'),
     path('ckdeditor/', include('ckeditor_uploader.urls')),
+    path('video/', views.videoas, name='video'),
+    path('create_video/',views.create_video,name='create_video'),
+    path('video/edit_video/<int:id>/',views.edit_v,name='edit_video'),
+    path('video/delete_video/<int:id>/',views.delete_v),
 
 ]
 if settings.DEBUG:
