@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 import jurnals.forms
-from jurnals.models import Blogs, Video
+from jurnals.models import Blogs, Coach, Preview_image, Match_m, Video_m
 
 
 @login_required(login_url='/accounts/login/')
@@ -27,7 +27,7 @@ def create(request):
                 return redirect('/home/')
         else:
             form = jurnals.forms.HotelForm()
-        return render(request, 'create.html', {'form': form})
+        return render(request, 'jurnals/create.html', {'form': form})
     else:
         return redirect('/accounts/login/')
 
@@ -45,7 +45,7 @@ def edit(request, id):
                 form.save()
                 return HttpResponseRedirect("/accounts/admin_panel")
             else:
-                return render(request, "edit.html", {"form": form})
+                return render(request, "jurnals/edit.html", {"form": form})
         except Blogs.DoesNotExist:
             return HttpResponseNotFound("<h2>Person not found</h2>")
     else:
@@ -74,7 +74,7 @@ def videoas(request):
     if not request.user.is_superuser:
         return redirect('/accounts/login/')
     else:
-        videos = Video.objects.all()
+        videos = Video_m.objects.all()
         return render(request, 'video_panel.html', {"videos": videos})
 
 
@@ -83,12 +83,14 @@ def create_video(request):
     if request.user.is_superuser:
         if request.method == 'POST':
             form = jurnals.forms.VideoForm(request.POST, request.FILES)
+
+
             if form.is_valid():
                 form.save()
                 return redirect('/home/')
         else:
             form = jurnals.forms.VideoForm()
-        return render(request, 'create_video.html', {'form': form})
+        return render(request, 'jurnals/create_video.html', {'form': form})
     else:
         return redirect('/accounts/login/')
 
@@ -97,15 +99,16 @@ def create_video(request):
 def edit_v(request, id):
     if request.user.is_superuser:
         try:
-            form = Video.objects.get(id=id)
+            form = Video_m.objects.get(id=id)
             if request.method == "POST":
                 form.title_v = request.POST.get("title_v")
                 form.video_url = request.POST.get("video_url")
+                form.image_video_url = request.POST.get("image_video_url")
                 form.save()
                 return HttpResponseRedirect("/home/")
             else:
-                return render(request, "edit_video.html", {"form": form})
-        except Video.DoesNotExist:
+                return render(request, "jurnals/edit_video.html", {"form": form})
+        except Video_m.DoesNotExist:
             return HttpResponseNotFound("<h2>Person not found</h2>")
     else:
         return redirect('/accounts/login/')
@@ -115,10 +118,130 @@ def edit_v(request, id):
 def delete_v(request, id):
     if request.user.is_superuser:
         try:
-            video = Video.objects.get(id=id)
+            video = Video_m.objects.get(id=id)
             video.delete()
             return HttpResponseRedirect("/accounts/admin_panel/video/")
-        except Video.DoesNotExist:
+        except Video_m.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='/accounts/login/')
+def coachs(request):
+    if not request.user.is_superuser:
+        return redirect('/accounts/login/')
+    else:
+        coachs = Coach.objects.all()
+        return render(request, 'coach_panel.html', {"coachs": coachs})
+
+
+@login_required(login_url='/accounts/login/')
+def add_coach(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = jurnals.forms.CoachForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('/home/')
+        else:
+            form = jurnals.forms.CoachForm()
+        return render(request, 'jurnals/add_coach.html', {'form': form})
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='accounts/login/')
+def preview_image(request):
+    if not request.user.is_superuser:
+        return redirect('/accounts/login/')
+    else:
+        preview_image = Preview_image.objects.all()
+        return render(request, 'preview_image_panel.html', {"preview_image": preview_image})
+
+
+@login_required(login_url='accounts/login')
+def preview_create(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = jurnals.forms.PreviewForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('/home/')
+        else:
+            form = jurnals.forms.PreviewForm()
+        return render(request, 'jurnals/preview_create.html', {'form': form})
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='accounts/login')
+def delete_preview(request, id):
+    if request.user.is_superuser:
+        try:
+            video = Preview_image.objects.get(id=id)
+            video.delete()
+            return HttpResponseRedirect("/accounts/admin_panel/preview_image_panel/")
+        except Preview_image.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='accounts/login/')
+def match(request):
+    if not request.user.is_superuser:
+        return redirect('/accounts/login/')
+    else:
+        matchs = Match_m.objects.all()
+        return render(request, 'match_panel.html', {"matchs": matchs})
+
+
+@login_required(login_url='accounts/login/')
+def add_match(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = jurnals.forms.MatchForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('/home/')
+        else:
+            form = jurnals.forms.MatchForm()
+        return render(request, 'jurnals/add_match.html', {"form": form})
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='/accounts/login/')
+def edit_match(request, id):
+    if request.user.is_superuser:
+        try:
+            form = Match_m.objects.get(id=id)
+            if request.method == "POST":
+                form.home_team = request.POST.get("home_team")
+
+                form.guest_team = request.POST.get("guest_team")
+
+                form.data = request.POST.get("data")
+                form.time = request.POST.get("time")
+                form.save()
+                return HttpResponseRedirect("/home/")
+            else:
+                return render(request, "jurnals/edit_match.html", {"form": form})
+        except Match_m.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='accounts/login')
+def delete_match(request, id):
+    if request.user.is_superuser:
+        try:
+            match = Match_m.objects.get(id=id)
+            match.delete()
+            return HttpResponseRedirect("/accounts/admin_panel/match_panel/")
+        except Match_m.DoesNotExist:
             return HttpResponseNotFound("<h2>Person not found</h2>")
     else:
         return redirect('/accounts/login/')

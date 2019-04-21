@@ -5,13 +5,14 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/my_shit.css">
+    <link rel="stylesheet" href="../../static/css/my_shit.css">
 </head>
 <body>
 <div class="container">
     <br>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+
 
         <p>
             <label for="id_title_v">Title v:</label>
@@ -21,9 +22,11 @@
             <label for="id_video_url">Video url:</label></p>
         <p> <textarea name="video_url" cols="40" rows="10" required id="id_video_url">
     </textarea></p>
-        <p>
+
+
             <input type="submit" class="btn btn-outline-primary" value="Сохранить">
         </p>
+
     </form>
 </div>
 <script type="text/javascript" src="/static/ckeditor/ckeditor-init.js"

@@ -16,22 +16,29 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 from django.views.generic import TemplateView
 
 from accounts import views
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('accounts/', include('accounts.urls')),
-                  path('accounts/', include('django.contrib.auth.urls')),  # new
-                  path('home/', TemplateView.as_view(template_name='home.html'), name='home'),  # new
-                  path('index/', views.index, name='index'),
-                  path('boss/', views.boss, name='boss'),
-                  path('administration/', views.administration, name='administration'),
-                  path('contacts/', views.contact, name='contacts'),
-                  path('history/', views.history, name='history'),
-                  path('', views.index1),
-                  path('all_news/', views.all_news, name='all_news')
+    path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),  # new
+    path('home/', TemplateView.as_view(template_name='home.html'), name='home'),  # new
+    path('index/', views.index, name='index'),
+    path('index/open_new/<int:id>', views.open_new, name='index'),
+    path('boss/', views.boss, name='boss'),
+    path('administration/', views.administration, name='administration'),
+    path('contacts/', views.contact, name='contacts'),
+    path('history/', views.history, name='history'),
+    path('', views.index1),
+    path('all_news/', views.all_news, name='all_news'),
+    path('all_news/open_new/<int:id>', views.open_new, name='open_new'),
 
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
+
+
+]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_PATH)

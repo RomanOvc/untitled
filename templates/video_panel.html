@@ -39,15 +39,12 @@
                                         frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
-
                                 <div class="card-body">
                                     <label>Название видео ролика:</label>
                                     <h5 class="card-title">{{ video.title_v }}</h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">Дата публикации: {{ video.create }}</li>
-
-
                                 </ul>
                                 <div class="card-body">
                                     <a href="edit_video/{{ video.id }}" class="card-link"> Изменить видео</a>
@@ -56,9 +53,7 @@
                             </div>
                         </div>
                     {% endfor %}
-
                 {% endif %}
-
             </div>
         {% endblock %}
     </div>

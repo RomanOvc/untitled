@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><label for="id_home_team">Home team:</label> <textarea name="home_team" cols="40" rows="10" required
+                                                              id="id_home_team">{{ form.home_team }}
+</textarea></p>
+    <p><label for="id_home_image">Home image:</label> <input type="file" name="home_image" accept="image/*"  required
+                                                             id="id_home_image"></p>
+    <p><label for="id_guest_team">Guest team:</label> <textarea name="guest_team" cols="40" rows="10" required
+                                                                id="id_guest_team">{{ form.guest_team }}
+</textarea></p>
+    <p><label for="id_guest_image">Guest image:</label> <input type="file" name="guest_image" accept="image/*" required
+                                                               id="id_guest_image"></p>
+    <p>перезаписывать дату и время (example data: YYYY-MM-DD time: H:M)</p>
+    <p><label for="id_data">Data:</label> <input type="text" name="data" required id="id_data" value="{{ form.data }}"></p>
+    <p><label for="id_time">Time:</label> <input type="text" name="time" required id="id_time" value="{{ form.time }}"></p>
+    <input type="submit" value="Save">
+</form>
+</form>
+</body>
+</html>

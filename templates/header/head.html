@@ -1,79 +1,38 @@
 {% extends "index.html" %}
 
 {% block content_home %}
-
-    <div class="container">
-        <div class="top-panel-static">
-            <div class="top-panel-inner">
-            </div>
+    <br>
+    <section>
+        <div class="container">
+            {% for image in preview_image %}
+                <img src="/{{ image.image }}" style="max-width: 100%; max-height: 100%; "/>
+            {% endfor %}
         </div>
-        <div class="main">
-            <ul class="pgwSlider">
-                <a href="#">
-                    <li>
-                        <img src="https://bipbap.ru/wp-content/uploads/2017/10/0_8eb56_842bba74_XL-640x400.jpg"
-                             alt="Заголовок из alt атрибута">
-                        <a href="#">Зasdasd</a>
-                    </li>
-                </a>
-                <li><img src="https://bipbap.ru/wp-content/uploads/2017/10/0_8eb56_842bba74_XL-640x400.jpg" alt="Заголовок из alt атрибута"
-                         data-large-src="https://bipbap.ru/wp-content/uploads/2017/10/0_8eb56_842bba74_XL-640x400.jpg">
-                </li>
-                <li>
-                    <img src="https://bipbap.ru/wp-content/uploads/2017/10/0_8eb56_842bba74_XL-640x400.jpg" alt="asdasd">
-                    <span>Заголовок из тега span</span>
-                </li>
-            </ul>
-        </div>
-    </div>
+    </section>
     <br>
     <section class="details-card">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-
-                    <div class="card-content">
-                        <div class="card-img">
-                            <img src="https://placeimg.com/380/230/nature" alt="">
-                            <span><h4>heading</h4></span>
-                        </div>
-                        <div class="card-desc">
-                            <h3><a hrem="#">asdasda adasdasd asdasd</a></h3>
-                            <a href="#" class="btn-card">Read</a>
-                        </div>
+                {% for lol in blogs %}
+                    <div class="col-md-4">
+                        {% include "elements_index/newsitem.html" with title=lol.title image=lol.image create=lol.create id=lol.id %}
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-content">
-                        <div class="card-img">
-                            <img src="https://placeimg.com/380/230/animals" alt="">
-                            <span><h4>heading2</h4></span>
-                        </div>
-                        <div class="card-desc">
-                            <h3><a hrem="#">asdasda adasdasd asdasd</a></h3>
-                            <a href="#" class="btn-card">Read</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-content">
-                        <div class="card-img">
-                            <img src="https://placeimg.com/380/230/tech" alt="">
-                            <span><h4>heading3</h4></span>
-                        </div>
-                        <div class="card-desc">
-                            <h3><a hrem="#">asdasda adasdasd asdasd</a></h3>
-                            <a href="#" class="btn-card">Read</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
     <br>
     <br>
     <div class="container">
-        <h2>Ближайшие матчи</h2>
+        <h2>Ближайший матч</h2>
+        {% for match in matchs %}
+            <p>{{ match.home_team }}</p>
+            <p><img src="/{{ match.home_image }}"></p>
+            <p>{{ match.guest_team }}</p>
+            <p><img src="/{{ match.guest_image }}"></p>
+            <p>{{ match.data }}</p>
+            <p>{{ match.time }}</p>
+        {% endfor %}
         <hr>
     </div>
     <div class="container">
@@ -82,185 +41,83 @@
     <div class="container">
         <h2>Видео</h2>
         <hr>
+
         <div class="row">
+            {% for video in videos %}
+                <!-- Grid column -->
+                <div class="col-lg-4 col-md-12 mb-4">
 
-            <!-- Grid column -->
-            <div class="col-lg-4 col-md-12 mb-4">
+                    <!--Modal: Name-->
+                    <div class="modal fade " id="modal1" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
 
-                <!--Modal: Name-->
-                <div class="modal fade " id="modal1" tabindex="-1" role="dialog"
-                     aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                            <!--Content-->
+                            <div class="modal-content">
 
-                        <!--Content-->
-                        <div class="modal-content">
+                                <!--Body-->
+                                <div class="modal-body mb-0 p-0">
 
-                            <!--Body-->
-                            <div class="modal-body mb-0 p-0">
+                                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                        <iframe class="embed-responsive-item"
+                                                src="{{ video.video_url }}"
+                                                allowfullscreen></iframe>
+                                    </div>
 
-                                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                                    <iframe class="embed-responsive-item"
-                                            src="https://www.youtube.com/embed/A3PDXmYoF5U"
-                                            allowfullscreen></iframe>
+
                                 </div>
 
 
-                            </div>
+                                <!--Footer-->
+                                <div class="modal-footer justify-content-center">
+                                    <span class="mr-4">Spread the word!</span>
+                                    <a type="button" class="btn-floating btn-sm btn-fb"><i
+                                            class="fab fa-facebook-f"></i></a>
+                                    <!--Twitter-->
+                                    <a type="button" class="btn-floating btn-sm btn-tw"><i
+                                            class="fab fa-twitter"></i></a>
+                                    <!--Google +-->
+                                    <a type="button" class="btn-floating btn-sm btn-gplus"><i
+                                            class="fab fa-google-plus-g"></i></a>
+                                    <!--Linkedin-->
+                                    <a type="button" class="btn-floating btn-sm btn-ins"><i
+                                            class="fab fa-linkedin-in"></i></a>
 
+                                    <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4"
+                                            data-dismiss="modal">Close
+                                    </button>
 
-                            <!--Footer-->
-                            <div class="modal-footer justify-content-center">
-                                <span class="mr-4">Spread the word!</span>
-                                <a type="button" class="btn-floating btn-sm btn-fb"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <!--Twitter-->
-                                <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
-                                <!--Google +-->
-                                <a type="button" class="btn-floating btn-sm btn-gplus"><i
-                                        class="fab fa-google-plus-g"></i></a>
-                                <!--Linkedin-->
-                                <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
-
-                                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4"
-                                        data-dismiss="modal">Close
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <!--/.Content-->
-
-                    </div>
-
-                </div>
-
-                <!--Modal: Name-->
-
-                <a><img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-1.jpg"
-                        alt="video"
-                        data-toggle="modal" data-target="#modal1"></a>
-                <div class="card-desc">
-                    <h3><a href="#">asdasda adasdasd asdasd</a></h3>
-                    <a href="#" class="btn-card">Read</a>
-                </div>
-
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-lg-4 col-md-6 mb-4">
-
-                <!--Modal: Name-->
-                <div class="modal fade" id="modal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-
-                        <!--Content-->
-                        <div class="modal-content">
-
-                            <!--Body-->
-                            <div class="modal-body mb-0 p-0">
-
-                                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                                    <iframe class="embed-responsive-item"
-                                            src="https://www.youtube.com/embed/wTcNtgA6gHs"
-                                            allowfullscreen></iframe>
                                 </div>
 
                             </div>
 
-                            <!--Footer-->
-                            <div class="modal-footer justify-content-center">
-                                <span class="mr-4">Spread the word!</span>
-                                <a type="button" class="btn-floating btn-sm btn-fb"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <!--Twitter-->
-                                <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
-                                <!--Google +-->
-                                <a type="button" class="btn-floating btn-sm btn-gplus"><i
-                                        class="fab fa-google-plus-g"></i></a>
-                                <!--Linkedin-->
-                                <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
 
-                                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4"
-                                        data-dismiss="modal">Close
-                                </button>
-
-                            </div>
+                            <!--/.Content-->
 
                         </div>
-                        <!--/.Content-->
 
                     </div>
-                </div>
-                <!--Modal: Name-->
 
-                <a><img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-2.jpg"
-                        alt="video"
-                        data-toggle="modal" data-target="#modal6"></a>
+                    <!--Modal: Name-->
 
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-lg-4 col-md-6 mb-4">
-
-                <!--Modal: Name-->
-                <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-
-                        <!--Content-->
-                        <div class="modal-content">
-
-                            <!--Body-->
-                            <div class="modal-body mb-0 p-0">
-
-                                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                                    <iframe class="embed-responsive-item"
-                                            src="https://www.youtube.com/embed/vlDzYIIOYmM"
-                                            allowfullscreen></iframe>
-                                </div>
-
-                            </div>
-
-                            <!--Footer-->
-                            <div class="modal-footer justify-content-center">
-                                <span class="mr-4">Spread the word!</span>
-                                <a type="button" class="btn-floating btn-sm btn-fb"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <!--Twitter-->
-                                <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
-                                <!--Google +-->
-                                <a type="button" class="btn-floating btn-sm btn-gplus"><i
-                                        class="fab fa-google-plus-g"></i></a>
-                                <!--Linkedin-->
-                                <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
-
-                                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4"
-                                        data-dismiss="modal">Close
-                                </button>
-
-                            </div>
-
-                        </div>
-                        <!--/.Content-->
+                    <a><img class="img-fluid z-depth-1" src="{{ video.image_video_url }}"
+                            alt="video"
+                            data-toggle="modal" data-target="#modal1"></a>
+                    <div class="card-desc">
+                        <h3 style="text-align: center">{{ video.title_v }}</h3>
 
                     </div>
+
                 </div>
-                <!--Modal: Name-->
+                <!-- Grid column -->
 
-                <a><img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-3.jpg"
-                        alt="video"
-                        data-toggle="modal" data-target="#modal4"></a>
+                <!-- Grid column -->
 
-            </div>
-            <!-- Grid column -->
-
+                <!-- Grid column -->
+            {% endfor %}
         </div>
+
     </div>
 
     <div class="container">
@@ -271,6 +128,4 @@
         <h2>Спонсоры</h2>
         <hr>
     </div>
-    <div class="container">Магазин</div>
-
 {% endblock content_home %}

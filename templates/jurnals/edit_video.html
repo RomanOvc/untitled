@@ -5,12 +5,13 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/my_shit.css">
+    <link rel="stylesheet" href="../../static/css/my_shit.css">
 </head>
 <body>
 <div class="conteiner">
     <form method="POST">
         {% csrf_token %}
+
         <p>
             <label>Введите имя</label><br>
             <input type="text" name="title_v" value="{{ form.title_v }}"/>
@@ -20,6 +21,7 @@
             <textarea cols="40" id="id_video_url" maxlength="1000" name="video_url" rows="10" >{{ form.video_url }}</textarea>
 
         </p>
+
 
         <input type="submit" value="Сохранить">
     </form>

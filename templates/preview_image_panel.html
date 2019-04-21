@@ -19,31 +19,26 @@
     <div class="container">
         {% block content %}
             <div class="row">
-                {% if blogs.count > 0 %}
+                {% if preview_image.count > 0 %}
 
-                    {% for blog in blogs %}
+                    {% for image in preview_image %}
                         <div class="card-deck col-4">
                             <div class="card" style="width: 18rem;">
                                 <img class="card-img-top" width="40px"
-                                     src="{{ blog.image }}"
+                                     src="/{{ image.image }}"
                                      alt="Card image cap"/>
-                                <div class="card-body">
-                                    <label>Название статьи:</label>
-                                    <h5 class="card-title">{{ blog.title }}</h5>
-                                </div>
+
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Дата публикации: {{ blog.create }}</li>
-
-
+                                    <li class="list-group-item">Дата публикации: {{ image.create }}</li>
                                 </ul>
                                 <div class="card-body">
-                                    <a href="edit/{{ blog.id }}" class="card-link"> Изменить статью</a>
-                                    <a href="delete/{{ blog.id }}" class="card-link">Удалить статью</a>
+                                    <a href="delete_preview/{{ image.id }}" class="card-link">Удалить превью</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
-
+                {% else %}
+                    Пусто
                 {% endif %}
             </div>
         {% endblock %}

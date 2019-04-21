@@ -8,5 +8,6 @@ urlpatterns = [
     # path('signup/', views.signup(), name='signup'),
     path('signup/', views.signup, name='signup'),
     path('admin_panel/', include('jurnals.urls'))
-
-]  + static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
+]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_PATH)

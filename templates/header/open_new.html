@@ -1,0 +1,49 @@
+{% extends "boss.html" %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="container">
+                        <hr>
+                        <h2 style="text-align: center">{{ blog_open.title }}</h2>
+                        <hr>
+                        <div class="container">
+                            <img src="/{{ blog_open.image }} " width="660" height="300"/>
+                        </div>
+                        <div class="container">
+                            {% autoescape off%}
+                            {{ blog_open.body }}
+                            {% endautoescape %}
+                        </div>
+                        <div class="container" style="text-align: right">
+                            {{ blog_open.create }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+
+                        <hr>
+                        <h2 style="text-align: center">Билеты</h2>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <br>
+                        <hr>
+                        <h2 style="text-align: center">Ближайший матч</h2>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <br>
+                        <hr>
+                        <h2 style="text-align: center">Турнирная таблица</h2>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

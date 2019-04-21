@@ -7,43 +7,43 @@
     <link rel="stylesheet" href="../static/css/my_shit.css">
 </head>
 <body>
-
 <div class="section">
     <div class="container">
         <a class="btn btn-outline-primary" href="/home/">Главная</a></button>
         <a class="btn btn-outline-primary" href="/accounts/admin_panel/create/">Добавить новость
         </a>
         <a class="btn btn-outline-primary" href="/accounts/admin_panel/create_video/">Добавить видео ролик</a>
+        <a class="btn btn-outline-primary" href="/accounts/admin_panel/add_coach/">Добавить Тренера(если есть
+            изменения)</a>
     </div>
     <br>
     <div class="container">
         {% block content %}
             <div class="row">
-                {% if blogs.count > 0 %}
-
-                    {% for blog in blogs %}
+                {% if coachs.count > 0 %}
+                    {% for coach in coachs %}
                         <div class="card-deck col-4">
                             <div class="card" style="width: 18rem;">
                                 <img class="card-img-top" width="40px"
-                                     src="{{ blog.image }}"
+                                     src="/{{ coach.image }}"
                                      alt="Card image cap"/>
                                 <div class="card-body">
-                                    <label>Название статьи:</label>
-                                    <h5 class="card-title">{{ blog.title }}</h5>
+                                    <label>Имя тренера:</label>
+                                    <h5 class="card-title">{{ coach.surname }}</h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Дата публикации: {{ blog.create }}</li>
-
-
+                                    <li class="list-group-item">Статус: {{ coach.status }}</li>
+                                    <li class="list-group-item">Дата публикации: {{ coach.create }}</li>
                                 </ul>
                                 <div class="card-body">
-                                    <a href="edit/{{ blog.id }}" class="card-link"> Изменить статью</a>
-                                    <a href="delete/{{ blog.id }}" class="card-link">Удалить статью</a>
+                                    <a href="edit/{{ coach.id }}" class="card-link"> Изменить статью</a>
+                                    <a href="delete/{{ coach.id }}" class="card-link">Удалить статью</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
-
+                {% else %}
+                    <p>Пусто</p>
                 {% endif %}
             </div>
         {% endblock %}

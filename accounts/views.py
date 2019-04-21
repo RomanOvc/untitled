@@ -1,8 +1,11 @@
+import datetime
+
 from django.contrib.auth import authenticate, login
 # Create your views here.
 from django.shortcuts import redirect, render
 
 from accounts.forms import SignUpForm
+from jurnals.models import Blogs, Preview_image, Video_m, Match_m
 
 
 def signup(request):
@@ -22,8 +25,27 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
+# 3 last news on index
 def index(request):
-    return render(request, "header/head.html")
+    blogs = Blogs.objects.all()[:3]
+    videos = Video_m.objects.all()[:3]
+    preview_image = Preview_image.objects.all()[:1]
+    data_now = datetime.date.today()
+    matchs = Match_m.objects.exclude(data__lt=data_now)[:1]
+    return render(request, "header/head.html",
+                  {"blogs": blogs, "videos": videos, "preview_image": preview_image, "matchs": matchs})
+
+
+# all news on index
+def all_news(request):
+    blogs_render = Blogs.objects.all()
+    return render(request, "header/all_news.html", {"blogs_render": blogs_render})
+
+
+def open_new(request, id):
+    blog_open = Blogs.objects.get(id=id)
+    return render(request, "header/open_new.html", {"blog_open": blog_open})
+
 
 
 def index1(request):
@@ -44,7 +66,3 @@ def contact(request):
 
 def history(request):
     return render(request, "header/history_club.html")
-
-
-def all_news(request):
-    return render(request, "header/all_news.html")
