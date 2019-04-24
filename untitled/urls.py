@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 from django.views.generic import TemplateView
 
@@ -36,9 +35,10 @@ urlpatterns = [
     path('', views.index1),
     path('all_news/', views.all_news, name='all_news'),
     path('all_news/open_new/<int:id>', views.open_new, name='open_new'),
-
-
-
+    path('coachs/', views.coach_index, name='coachs'),
+    path('players/', views.player_index, name='players'),
+    path('academy/', views.academy, name='academy'),
+    path('videos/', views.all_video, name='videos'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_PATH)

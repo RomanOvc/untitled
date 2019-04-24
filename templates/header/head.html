@@ -25,14 +25,34 @@
     <br>
     <div class="container">
         <h2>Ближайший матч</h2>
-        {% for match in matchs %}
-            <p>{{ match.home_team }}</p>
-            <p><img src="/{{ match.home_image }}"></p>
-            <p>{{ match.guest_team }}</p>
-            <p><img src="/{{ match.guest_image }}"></p>
-            <p>{{ match.data }}</p>
-            <p>{{ match.time }}</p>
-        {% endfor %}
+        <div class="row">
+            {% if matchs.count > 0 %}
+
+                {% for match in matchs %}
+                    <table style="width: 300px">
+                        <tr>
+                            <td><p style="text-align: center">{{ match.home_team }}</p></td>
+
+                            <td><p style="text-align: center">{{ match.guest_team }}</p></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/{{ match.home_image }}"/></td>
+
+                            <td><img src="/{{ match.guest_image }}"/></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" style="text-align: center"><p>{{ match.data }}/{{ match.time }}</p></td>
+                        </tr>
+                    </table>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center">Матчи отсутствуют</p>
+
+
+            {% endif %}
+
+        </div>
         <hr>
     </div>
     <div class="container">
@@ -67,8 +87,6 @@
 
 
                                 </div>
-
-
                                 <!--Footer-->
                                 <div class="modal-footer justify-content-center">
                                     <span class="mr-4">Spread the word!</span>

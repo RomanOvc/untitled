@@ -21,6 +21,13 @@ urlpatterns = [
 
     path('coach/', views.coachs, name='coach'),
     path('add_coach/', views.add_coach, name='add_coach'),
+    path('coach/edit_coach/<int:id>/', views.edit_coach, name='edit_coach'),
+    path('coach/delete_coach/<int:id>/', views.delete_coach),
+
+    path('player_panel/', views.players, name='player_panel'),
+    path('add_player/', views.add_player, name='add_player'),
+    path('player_panel/edit_player/<int:id>/', views.edit_player, name='edit_player'),
+    path('player_panel/delete_player/<int:id>/', views.delete_player),
 
     path('preview_image_panel/', views.preview_image, name='preview_image_panel'),
     path('preview_create/', views.preview_create, name='preview_create'),

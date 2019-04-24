@@ -2,10 +2,11 @@ import datetime
 
 from django.contrib.auth import authenticate, login
 # Create your views here.
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect, render
 
 from accounts.forms import SignUpForm
-from jurnals.models import Blogs, Preview_image, Video_m, Match_m
+from jurnals.models import Blogs, Preview_image, Video_m, Match_m, Coach, Player
 
 
 def signup(request):
@@ -39,13 +40,39 @@ def index(request):
 # all news on index
 def all_news(request):
     blogs_render = Blogs.objects.all()
-    return render(request, "header/all_news.html", {"blogs_render": blogs_render})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(blogs_render, 1)
+    try:
+        blogs = paginator.page(page)
+    except PageNotAnInteger:
+        blogs = paginator.page(1)
+    except EmptyPage:
+        blogs = paginator.page(paginator.num_pages)
+    return render(request, "header/all_news.html", {"blogs": blogs})
+
+
+def all_video(request):
+    videos = Video_m.objects.all()
+    return render(request, "header/all_video.html", {"videos": videos})
 
 
 def open_new(request, id):
     blog_open = Blogs.objects.get(id=id)
     return render(request, "header/open_new.html", {"blog_open": blog_open})
 
+
+def coach_index(request):
+    coach_index = Coach.objects.all()
+    return render(request, "header/coachs.html", {"coach_index": coach_index})
+
+
+def player_index(request):
+    player_index = Player.objects.all()
+    return render(request, "header/players.html", {"player_index": player_index})
+
+
+def academy(request):
+    return render(request, "header/academy.html")
 
 
 def index1(request):

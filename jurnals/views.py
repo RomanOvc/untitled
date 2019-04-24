@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 import jurnals.forms
-from jurnals.models import Blogs, Coach, Preview_image, Match_m, Video_m
+from jurnals.models import Blogs, Coach, Preview_image, Match_m, Video_m, Player, Type_player, Type_coach
 
 
 @login_required(login_url='/accounts/login/')
@@ -43,7 +43,7 @@ def edit(request, id):
                 form.body = request.POST.get("body")
 
                 form.save()
-                return HttpResponseRedirect("/accounts/admin_panel")
+                return HttpResponseRedirect("/home/")
             else:
                 return render(request, "jurnals/edit.html", {"form": form})
         except Blogs.DoesNotExist:
@@ -83,7 +83,6 @@ def create_video(request):
     if request.user.is_superuser:
         if request.method == 'POST':
             form = jurnals.forms.VideoForm(request.POST, request.FILES)
-
 
             if form.is_valid():
                 form.save()
@@ -147,6 +146,100 @@ def add_coach(request):
         else:
             form = jurnals.forms.CoachForm()
         return render(request, 'jurnals/add_coach.html', {'form': form})
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='/accounts/login/')
+def edit_coach(request, id):
+    if request.user.is_superuser:
+        try:
+            coach = Coach.objects.get(id=id)
+            if request.method == "POST":
+                coach.fullname = request.POST.get("fullname")
+                coach.image = request.FILES.get("image")
+                coach_type = Type_coach.objects.get(pk=request.POST.get("id_type_coach"))
+                coach.id_type_coach = coach_type
+                coach.save()
+                return HttpResponseRedirect("/home/")
+            else:
+                return render(request, "jurnals/edit_coach.html", {"form": coach})
+        except Coach.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='accounts/login')
+def delete_coach(request, id):
+    if request.user.is_superuser:
+        try:
+            coach = Coach.objects.get(id=id)
+            coach.delete()
+            return HttpResponseRedirect("/home/")
+        except Coach.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='/accounts/login/')
+def players(request):
+    if not request.user.is_superuser:
+        return redirect('/accounts/login/')
+    else:
+        players = Player.objects.all()
+        return render(request, 'player_panel.html', {"players": players})
+
+
+@login_required(login_url='/accounts/login/')
+def add_player(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = jurnals.forms.PlayerForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('/home/')
+        else:
+            form = jurnals.forms.PlayerForm()
+        return render(request, 'jurnals/add_player.html', {'form': form})
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='/accounts/login/')
+def edit_player(request, id):
+    if request.user.is_superuser:
+        try:
+            player = Player.objects.get(id=id)
+            if request.method == "POST":
+                player.fullname = request.POST.get("fullname")
+                player.image = request.FILES.get("image")
+                player_type = Type_player.objects.get(pk=request.POST.get("id_player_type"))
+                player.id_player_type = player_type
+                player.birthday = request.POST.get("birthday")
+                player.weight = request.POST.get("weight")
+                player.growth = request.POST.get("growth")
+                player.number = request.POST.get("number")
+                player.save()
+                return HttpResponseRedirect("/home/")
+            else:
+                return render(request, "jurnals/edit_player.html", {"form": player})
+        except Player.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='accounts/login')
+def delete_player(request, id):
+    if request.user.is_superuser:
+        try:
+            player = Player.objects.get(id=id)
+            player.delete()
+            return HttpResponseRedirect("/accounts/admin_panel/preview_image_panel/")
+        except Player.DoesNotExist:
+            return HttpResponseNotFound("<h2>Person not found</h2>")
     else:
         return redirect('/accounts/login/')
 

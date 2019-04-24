@@ -1,0 +1,184 @@
+{% extends "boss.html" %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="container">
+
+                        <hr>
+                        <h2 style="text-align: center">Основной состав</h2>
+                        <hr>
+
+                        <br>
+                        <h6>Вратари</h6>
+                        <hr>
+
+                        <div class="row">
+                            {% for player in player_index %}
+                                {% if player.id_player_type.type_player == 'goalkeeper' %}
+                                    <div class="col-md-6" style="padding-top: 30px">
+                                        <div class="wrapper">
+                                            <div class="card_wraper ">
+                                                <div class="front">
+                                                    <div class="card-content" style="width: 100%; height: 100%;">
+                                                        <div class="card-img">
+                                                            <img
+                                                                    src="/{{ player.image }}">
+                                                        </div>
+                                                        <div class="card-desc">
+                                                            <h4>{{ player.fullname }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="back">
+                                                    <p style="text-align: center">Сведения об игроке:</p>
+                                                    <p> Позиция:{{ player.id_player_type.type_player }}</p>
+                                                    <p> Игровой номер:{{ player.number }}</p>
+                                                    <p> Дата рождения:{{ player.birthday }}</p>
+                                                    <p> Рост:{{ player.growth }}</p>
+                                                    <p> Вес:{{ player.weight }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                        <br>
+                        <h6>Защитники</h6>
+                        <hr>
+                        <div class="row">
+                            {% for player in player_index %}
+                                {% if player.id_player_type.type_player == 'defender' %}
+                                    <div class="col-md-6" style="padding-top: 30px">
+                                        <div class="wrapper">
+                                            <div class="card_wraper ">
+                                                <div class="front">
+                                                    <div class="card-content" style="width: 100%; height: 100%;">
+                                                        <div class="card-img">
+                                                            <img
+                                                                    src="/{{ player.image }}">
+                                                        </div>
+                                                        <div class="card-desc">
+                                                            <h4>{{ player.fullname }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="back">
+                                                    <p style="text-align: center">Сведения об игроке:</p>
+                                                    <p> Позиция:{{ player.id_player_type.type_player }}</p>
+                                                    <p> Игровой номер:{{ player.number }}</p>
+                                                    <p> Дата рождения:{{ player.birthday }}</p>
+                                                    <p> Рост:{{ player.growth }}</p>
+                                                    <p> Вес:{{ player.weight }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <br>
+                        <h6>Полузащитники</h6>
+                        <hr>
+                        <div class="row">
+                            {% for player in player_index %}
+                                {% if player.id_player_type.type_player == 'midfielder' %}
+                                    <div class="col-md-6" style="padding-top: 30px">
+                                        <div class="wrapper">
+                                            <div class="card_wraper ">
+                                                <div class="front">
+                                                    <div class="card-content" style="width: 100%; height: 100%;">
+                                                        <div class="card-img">
+                                                            <img
+                                                                    src="/{{ player.image }}">
+                                                        </div>
+                                                        <div class="card-desc">
+                                                            <h4>{{ player.fullname }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="back">
+                                                    <p style="text-align: center">Сведения об игроке:</p>
+                                                    <p> Позиция:{{ player.id_player_type.type_player }}</p>
+                                                    <p> Игровой номер:{{ player.number }}</p>
+                                                    <p> Дата рождения:{{ player.birthday }}</p>
+                                                    <p> Рост:{{ player.growth }}</p>
+                                                    <p> Вес:{{ player.weight }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <br>
+                        <h6>Нападающие</h6>
+                        <hr>
+                        <div class="row">
+                            {% for player in player_index %}
+                                {% if player.id_player_type.type_player == 'forward' %}
+                                    <div class="col-md-6" style="padding-top: 30px">
+                                        <div class="wrapper">
+                                            <div class="card_wraper ">
+                                                <div class="front">
+                                                    <div class="card-content" style="width: 100%; height: 100%;">
+                                                        <div class="card-img">
+                                                            <img
+                                                                    src="/{{ player.image }}">
+                                                        </div>
+                                                        <div class="card-desc">
+                                                            <h4>{{ player.fullname }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="back">
+                                                    <p style="text-align: center">Сведения об игроке:</p>
+                                                    <p> Позиция:{{ player.id_player_type.type_player }}</p>
+                                                    <p> Игровой номер:{{ player.number }}</p>
+                                                    <p> Дата рождения:{{ player.birthday }}</p>
+                                                    <p> Рост:{{ player.growth }}</p>
+                                                    <p> Вес:{{ player.weight }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <br>
+
+                        <br>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+
+                        <hr>
+                        <h2>Билеты</h2>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <br>
+                        <hr>
+                        <h2>Ближайший матч</h2>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <br>
+                        <hr>
+                        <h2>Турнирная таблица</h2>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

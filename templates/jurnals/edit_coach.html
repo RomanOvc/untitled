@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><label for="id_fullname">Fullname:</label> <input type="text" name="fullname" maxlength="100" required
+                                                         id="id_fullname" value="{{ form.fullname }}"></p>
+    <p><label for="id_image">Image:</label> <input type="file" name="image" accept="image/*" required id="id_image" ></p>
+    <p><label for="id_id_type_coach">Id type coach:</label> <select name="id_type_coach" required id="id_id_type_coach">
+        <option value="{{ form.id_type_coach.id }}" selected>{{ form.id_type_coach }}</option>
+
+        <option value="1">first coach</option>
+
+        <option value="2">small coach</option>
+
+    </select></p>
+    <input class="btn btn-outline-primary" type="submit" value="crate">
+</form>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% extends "boss.html" %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="container">
+
+                        <hr>
+                        <h2 style="text-align: center">Руководство</h2>
+                        <hr>
+                        <div class="row">
+                            {% for coach in coach_index %}
+
+                                <div class="col-md-6" style="padding-top: 30px">
+                                    <div class="wrapper">
+                                        <div class="card_wraper ">
+                                            <div class="front">
+                                                <div class="card-content" style="width: 100%; height: 100%;">
+                                                    <div class="card-img">
+                                                        <img
+                                                                src="/{{ coach.image }}">
+                                                    </div>
+                                                    <div class="card-desc">
+                                                        <h4>{{ coach.fullname }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="back">
+                                                <p>{{ coach.id_type_coach.type_coach }}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            {% endfor %}
+
+                        </div>
+                        <br>
+
+                        <br>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+
+                        <hr>
+                        <h2>Билеты</h2>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <br>
+                        <hr>
+                        <h2>Ближайший матч</h2>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <br>
+                        <hr>
+                        <h2>Турнирная таблица</h2>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

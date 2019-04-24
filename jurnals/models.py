@@ -50,15 +50,49 @@ class Video_m(models.Model):
         super(Video_m, self).save(*args, **kwargs)
 
 
+class Type_coach(models.Model):
+    type_coach = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.type_coach
+
+
 class Coach(models.Model):
     """Model Coach"""
 
     class Meta:
-        ordering = ["-status"]
+        ordering = ["id_type_coach"]
 
     fullname = models.CharField(max_length=100)
-    status = models.CharField(max_length=40)
     image = models.ImageField(upload_to='media/images/')
+    id_type_coach = models.ForeignKey(Type_coach, on_delete=models.CASCADE)
+    create = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.fullname
+
+
+class Type_player(models.Model):
+    type_player = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.type_player
+
+
+class Player(models.Model):
+    """Model Coach"""
+
+    class Meta:
+        ordering = ["id_player_type"]
+
+    fullname = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='media/images/')
+    id_player_type = models.ForeignKey(Type_player, on_delete=models.CASCADE)
+    birthday = models.DateField()
+    weight = models.IntegerField()
+    growth = models.IntegerField()
+    number = models.IntegerField()
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
