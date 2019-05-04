@@ -3,9 +3,14 @@ from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-import jurnals.forms
-from jurnals.models import Blogs, Coach, Preview_image, Match_m, Video_m, Player, Type_player, Type_coach
+from django.utils.datetime_safe import date
 
+import jurnals.forms
+from jurnals.models import Blogs, Coach, Preview_image, Match_m, Video_m, Player, Type_player, Type_coach, \
+    Ticket_selling
+
+
+# this is admin panel
 
 @login_required(login_url='/accounts/login/')
 def blogas(request):
@@ -16,7 +21,7 @@ def blogas(request):
         return render(request, 'admin_panel.html', {"blogs": blogs})
 
 
-# create new
+# this def create new
 @login_required(login_url='/accounts/login/')
 def create(request):
     if request.user.is_superuser:
@@ -32,6 +37,7 @@ def create(request):
         return redirect('/accounts/login/')
 
 
+# this def edit new
 @login_required(login_url='/accounts/login/')
 def edit(request, id):
     if request.user.is_superuser:
@@ -52,6 +58,7 @@ def edit(request, id):
         return redirect('/accounts/login/')
 
 
+# this def delete new
 @login_required(login_url='/accounts/login/')
 def delete(request, id):
     if request.user.is_superuser:
@@ -69,6 +76,7 @@ def success(request):
     return HttpResponse('successfuly upload')
 
 
+# this def show video
 @login_required(login_url='/accounts/login/')
 def videoas(request):
     if not request.user.is_superuser:
@@ -78,6 +86,7 @@ def videoas(request):
         return render(request, 'video_panel.html', {"videos": videos})
 
 
+# this def create video
 @login_required(login_url='/accounts/login/')
 def create_video(request):
     if request.user.is_superuser:
@@ -94,6 +103,7 @@ def create_video(request):
         return redirect('/accounts/login/')
 
 
+# this def edit video
 @login_required(login_url='/accounts/login/')
 def edit_v(request, id):
     if request.user.is_superuser:
@@ -113,6 +123,7 @@ def edit_v(request, id):
         return redirect('/accounts/login/')
 
 
+# this def delete video
 @login_required(login_url='accounts/login/')
 def delete_v(request, id):
     if request.user.is_superuser:
@@ -126,6 +137,7 @@ def delete_v(request, id):
         return redirect('/accounts/login/')
 
 
+# this def to show coach
 @login_required(login_url='/accounts/login/')
 def coachs(request):
     if not request.user.is_superuser:
@@ -135,6 +147,7 @@ def coachs(request):
         return render(request, 'coach_panel.html', {"coachs": coachs})
 
 
+# this def add coach
 @login_required(login_url='/accounts/login/')
 def add_coach(request):
     if request.user.is_superuser:
@@ -150,6 +163,7 @@ def add_coach(request):
         return redirect('/accounts/login/')
 
 
+# this def edit coach
 @login_required(login_url='/accounts/login/')
 def edit_coach(request, id):
     if request.user.is_superuser:
@@ -170,6 +184,7 @@ def edit_coach(request, id):
         return redirect('/accounts/login/')
 
 
+# this def delete coach
 @login_required(login_url='accounts/login')
 def delete_coach(request, id):
     if request.user.is_superuser:
@@ -183,6 +198,7 @@ def delete_coach(request, id):
         return redirect('/accounts/login/')
 
 
+# this def to show player
 @login_required(login_url='/accounts/login/')
 def players(request):
     if not request.user.is_superuser:
@@ -192,6 +208,7 @@ def players(request):
         return render(request, 'player_panel.html', {"players": players})
 
 
+# this def add player
 @login_required(login_url='/accounts/login/')
 def add_player(request):
     if request.user.is_superuser:
@@ -207,6 +224,7 @@ def add_player(request):
         return redirect('/accounts/login/')
 
 
+# this def edit player
 @login_required(login_url='/accounts/login/')
 def edit_player(request, id):
     if request.user.is_superuser:
@@ -231,6 +249,7 @@ def edit_player(request, id):
         return redirect('/accounts/login/')
 
 
+# this def delete player
 @login_required(login_url='accounts/login')
 def delete_player(request, id):
     if request.user.is_superuser:
@@ -244,6 +263,7 @@ def delete_player(request, id):
         return redirect('/accounts/login/')
 
 
+# this def to show preview image
 @login_required(login_url='accounts/login/')
 def preview_image(request):
     if not request.user.is_superuser:
@@ -253,6 +273,7 @@ def preview_image(request):
         return render(request, 'preview_image_panel.html', {"preview_image": preview_image})
 
 
+# this def create preview image
 @login_required(login_url='accounts/login')
 def preview_create(request):
     if request.user.is_superuser:
@@ -268,6 +289,7 @@ def preview_create(request):
         return redirect('/accounts/login/')
 
 
+# this def dlete preview image
 @login_required(login_url='accounts/login')
 def delete_preview(request, id):
     if request.user.is_superuser:
@@ -281,6 +303,7 @@ def delete_preview(request, id):
         return redirect('/accounts/login/')
 
 
+# this def to show next match
 @login_required(login_url='accounts/login/')
 def match(request):
     if not request.user.is_superuser:
@@ -290,6 +313,7 @@ def match(request):
         return render(request, 'match_panel.html', {"matchs": matchs})
 
 
+# this def add next match
 @login_required(login_url='accounts/login/')
 def add_match(request):
     if request.user.is_superuser:
@@ -297,6 +321,16 @@ def add_match(request):
             form = jurnals.forms.MatchForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
+                lol = Match_m.objects.latest('id')
+                for sector in range(101, 103):
+                    for row in range(1, 11):
+                        for seat in range(1, 10):
+                            p = Ticket_selling.objects.create(sector='B' + str(sector), row=row, seat=seat,
+                                                              date=str(date.today()),
+                                                              status='0',
+                                                              match_id_id=lol.id)
+                            p.save()
+
                 return redirect('/home/')
         else:
             form = jurnals.forms.MatchForm()
@@ -305,6 +339,7 @@ def add_match(request):
         return redirect('/accounts/login/')
 
 
+# this def edit match
 @login_required(login_url='/accounts/login/')
 def edit_match(request, id):
     if request.user.is_superuser:
@@ -327,6 +362,7 @@ def edit_match(request, id):
         return redirect('/accounts/login/')
 
 
+# this def delete match
 @login_required(login_url='accounts/login')
 def delete_match(request, id):
     if request.user.is_superuser:
@@ -336,5 +372,20 @@ def delete_match(request, id):
             return HttpResponseRedirect("/accounts/admin_panel/match_panel/")
         except Match_m.DoesNotExist:
             return HttpResponseNotFound("<h2>Person not found</h2>")
+    else:
+        return redirect('/accounts/login/')
+
+
+@login_required(login_url='accounts/login')
+def test_create(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = jurnals.forms.PreviewForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('/home/')
+        else:
+            form = jurnals.forms.PreviewForm()
+        return render(request, 'jurnals/preview_create.html', {'form': form})
     else:
         return redirect('/accounts/login/')

@@ -40,4 +40,4 @@ class PreviewForm(forms.ModelForm):
 class MatchForm(forms.ModelForm):
     class Meta:
         model = Match_m
-        fields = ['home_team', 'home_image', 'guest_team', 'guest_image', 'data', 'time']
+        fields = ['id','home_team', 'home_image', 'guest_team', 'guest_image', 'data', 'time']

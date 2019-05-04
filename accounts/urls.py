@@ -7,6 +7,7 @@ from accounts import views
 urlpatterns = [
     # path('signup/', views.signup(), name='signup'),
     path('signup/', views.signup, name='signup'),
+
     path('admin_panel/', include('jurnals.urls'))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_PATH)

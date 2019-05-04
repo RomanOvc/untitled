@@ -25,7 +25,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),  # new
+    path('home/', views.matchs_calendar, name='do'),
+
+    path('home/match/<int:id>', views.buy_tickets, name='after'),
     path('home/', TemplateView.as_view(template_name='home.html'), name='home'),  # new
+
     path('index/', views.index, name='index'),
     path('index/open_new/<int:id>', views.open_new, name='index'),
     path('boss/', views.boss, name='boss'),
@@ -39,6 +43,9 @@ urlpatterns = [
     path('players/', views.player_index, name='players'),
     path('academy/', views.academy, name='academy'),
     path('videos/', views.all_video, name='videos'),
+    path('table/', views.table, name='table'),
+    path('calendar/', views.calendar, name='calendar'),
+    path('all_site/match/<int:id>', views.all_site)
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_PATH)

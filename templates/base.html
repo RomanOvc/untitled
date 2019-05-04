@@ -11,67 +11,6 @@
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script>
-
-        $(document).ready(function () {
-
-            $("path");
-
-            function clickOnSector(event) {
-                this.currentSector = event.target.dataset.sector;
-                if (!this.selectedSeats[this.currentSector]) {
-                    this.selectedSeats[this.currentSector] = []
-                }
-                // language=JQuery-CSS
-                $('#exampleModal').modal({});
-            }
-
-            function clickOnSeat(event) {
-                var row = $(event.target).data("row");
-                var seat = $(event.target).data("site");
-
-                console.log("sector:" + this.currentSector + " Row:" + row + " seat:" + seat);
-
-                if (this.selectedSeats[this.currentSector].find(elem => elem.row == row && elem.seat == seat)) {
-                    let index = this.selectedSeats[this.currentSector].findIndex(elem => elem.row === row && elem.seat === seat);
-                    this.selectedSeats[this.currentSector].splice(index, 1);
-                    $(event.target).removeClass("selectedpart");
-                } else {
-                    this.selectedSeats[this.currentSector].push({row: row, seat: seat});
-                    $(event.target).removeClass("selectedpart");
-                    $(event.target).addClass("selectedpart");
-                }
-            }
-
-            function unselectSeatModalOnClose(e) {
-                $("*[data-site]").removeClass("selectedpart");
-            }
-
-            function selectSeatModalOnShow(e) {
-                console.log("Show modal");
-                for (obj of this.selectedSeats[this.currentSector]) {
-                    $(`*[data-row="${obj.row}"][data-site="${obj.seat}"]`).addClass("selectedpart");
-                }
-            }
-
-            var context = {
-                currentSector: null,
-                selectedSeats: {},
-                clickOnSector: clickOnSector,
-                clickOnSeat: clickOnSeat,
-                unselectSeatModalOnClose: unselectSeatModalOnClose,
-                selectSeatModalOnShow: selectSeatModalOnShow
-
-            };
-
-            $("*[data-sector]").click(jQuery.proxy(context.clickOnSector, context));
-            $("*[data-row]").click(jQuery.proxy(context.clickOnSeat, context));
-            $('#exampleModal').on('hidden.bs.modal', jQuery.proxy(context.unselectSeatModalOnClose, context));
-            $('#exampleModal').on('show.bs.modal', jQuery.proxy(context.selectSeatModalOnShow, context));
-        });
-
-
-    </script>
 </head>
 <body>
 

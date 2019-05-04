@@ -73,6 +73,17 @@ class Coach(models.Model):
         return self.fullname
 
 
+class Preview_image(models.Model):
+    """Model Preview"""
+
+    class Meta:
+        ordering = ["-create"]
+
+    image = models.ImageField(upload_to='media/images/')
+    name = models.CharField(max_length=150)
+    create = models.DateTimeField(auto_now_add=True)
+
+
 class Type_player(models.Model):
     type_player = models.CharField(max_length=30)
 
@@ -100,22 +111,11 @@ class Player(models.Model):
         return self.fullname
 
 
-class Preview_image(models.Model):
-    """Model Preview"""
-
-    class Meta:
-        ordering = ["-create"]
-
-    image = models.ImageField(upload_to='media/images/')
-    name = models.CharField(max_length=150)
-    create = models.DateTimeField(auto_now_add=True)
-
-
 class Match_m(models.Model):
     """Model Match"""
 
     class Meta:
-        ordering = ["-data"]
+        ordering = ["data"]
 
     home_team = models.TextField()
     home_image = models.ImageField(upload_to='media/images/')
@@ -126,13 +126,24 @@ class Match_m(models.Model):
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
-# Demo Buy ticket
-# class Buy(models.Model):
-#     id_match = models.IntegerField(primary_key=Match)
-#     seson = models.DateField()
-#     mail_user = models.CharField()
-#     sector = models.IntegerField()
-#     row = models.IntegerField()
-#     site = models.IntegerField()
-#     price = models.IntegerField()
-#     data = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.home_team
+
+
+class Ticket_selling(models.Model):
+    """Model Ticket selling"""
+
+    match_id = models.ForeignKey(Match_m, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=100, blank=True)
+    email = models.TextField(blank=True)
+    phone = models.CharField(max_length=12,blank=True)
+    sector = models.CharField(max_length=4)
+    row = models.IntegerField()
+    seat = models.IntegerField()
+    date = models.DateField()
+    status = models.IntegerField(max_length=1)
+
+
+class test(models.Model):
+
+    field = models.IntegerField()

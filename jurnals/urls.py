@@ -6,7 +6,8 @@ from jurnals import views
 from jurnals.views import success
 
 urlpatterns = [
-    path('', views.blogas, name='admin_panel'),
+
+    path('all_new/', views.blogas, name='admin_panel'),
 
     path('create/', views.create, name='admin_panel/create'),
     path('edit/<int:id>/', views.edit),

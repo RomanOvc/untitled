@@ -24,7 +24,7 @@ SECRET_KEY = 'l_9m&zn2%qm)i!7naluzm*79-)ptpi*xjt#22%k%grgx#p3%(4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["lacolhost.com", "127.0.0.1", "localhost", "192.168.0.101"]
 
 # Application definition
 
@@ -42,9 +42,9 @@ INSTALLED_APPS = [
 ]
 CKEDITOR_UPLOAD_PATH = "uploads/"
 # my_project/settings.py
-
-LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -126,14 +126,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
- STATIC_PATH,
- )
+    STATIC_PATH,
+)
 STATIC_URL = '/static/'
 
 MEDIA_PATH = os.path.join(BASE_DIR, 'media')

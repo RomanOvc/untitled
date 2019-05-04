@@ -97,7 +97,7 @@ header,
 
 
 .aa:hover {
-    background: white; /* Цвет фона под ссылкой */
+    background: cornflowerblue; /* Цвет фона под ссылкой */
     color: blue; /* Цвет ссылки */
 }
 
@@ -105,6 +105,54 @@ header,
     display: table;
     width: 100%;
     margin: 0;
+}
+
+
+.text-muted {
+    color: white!important;
+}
+.back_color{
+    background: blueviolet!important;
+}
+
+.text_a {
+
+    text-align: center;
+
+}
+
+#navbar .btn {
+    border: 0px solid transparent;
+}
+
+#navbar .btn-default.focus, #navbar .btn-default:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+#navbar li.nav-item a {
+    font-weight: 700;
+    color: #333;
+}
+
+#navbar li.nav-item a:hover {
+    color: #fff;
+}
+
+#navbar a.dropdown-item {
+    font-weight: 400 !important;
+}
+
+#navbar button.dropdown-toggle-split {
+    background-color: transparent;
+}
+
+#navbar button.dropdown-toggle-split:hover {
+    color: #fff;
+}
+
+#navbar button.dropdown-toggle-split:active {
+    outline: none;
 }
 
 .fnav > li {
@@ -270,7 +318,6 @@ path:hover {
     clear: both;
     display: block
 }
-
 
 
 .login-wrap {
@@ -499,6 +546,7 @@ path:hover {
     backface-visibility: hidden;
     background-color: #fff;
 }
+
 .front img {
     max-width: 100%;
     min-width: 100%;
