@@ -1,22 +1,24 @@
 {% if buy_match.count > 0 %}
 
     {% for match in buy_match %}
-        <table style="width: 300px">
-            <tr>
-                <td><p style="text-align: center">{{ match.home_team }}</p></td>
+{#        <table style="width: 300px">#}
+{#            <tr>#}
+{#                <td><p style="text-align: center">{{ match.home_team }}</p></td>#}
+{##}
+{#                <td><p style="text-align: center">{{ match.guest_team }}</p></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td><img src="/{{ match.home_image }}"/></td>#}
+{##}
+{#                <td><img src="/{{ match.guest_image }}"/></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td colspan="2" style="text-align: center"><p>{{ match.data }}/{{ match.time }}</p></td>#}
+{#            </tr>#}
+{##}
+{#        </table>#}
+        {% include "components/match_item.html" with match=match buy_button=False %}
 
-                <td><p style="text-align: center">{{ match.guest_team }}</p></td>
-            </tr>
-            <tr>
-                <td><img src="/{{ match.home_image }}"/></td>
-
-                <td><img src="/{{ match.guest_image }}"/></td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: center"><p>{{ match.data }}/{{ match.time }}</p></td>
-            </tr>
-
-        </table>
     {% endfor %}
 
 

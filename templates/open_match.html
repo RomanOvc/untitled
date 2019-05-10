@@ -1,40 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-xl navbar-light bg-light ">
         <a class="navbar-brand" href="/index/"> A.J.Auxerre</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href=""><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="nav navbar-nav nav-fill w-100" style="justify-content: flex-end;">
+                <li style="padding-right: 10px;"><a href=""><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
                 <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
+    <div class="container" style="text-align: -webkit-center;">
+     {% include "components/match_item.html" with match=buy_match buy_button=True %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="container col-lg-8">
+                {% include 'registration/room_user.html' %}
+            </div>
+            <div class="container col-lg-4">
 
-    <table style="width: 300px">
-        <tr>
-            <td><p style="text-align: center">{{ buy_match.home_team }}</p></td>
-
-            <td><p style="text-align: center">{{ buy_match.guest_team }}</p></td>
-        </tr>
-        <tr>
-            <td><img src="/{{ buy_match.home_image }}"/></td>
-
-            <td><img src="/{{ buy_match.guest_image }}"/></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align: center"><p>{{ buy_match.data }}/{{ buy_match.time }}</p>
-                <input id="match_id" value="{{ buy_match.id }}" hidden>
-            </td>
-        </tr>
-
-    </table>
-    {% include 'registration/room_user.html' %}
+            </div>
+        </div>
+    </div>
 {% endblock content %}

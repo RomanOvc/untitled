@@ -10,47 +10,45 @@
                         <h2 style="text-align: center">Турнирная таблица</h2>
                         <hr>
                         <div class="row">
-                            <table class="table">
-                                <thead class="blue white-text">
-                                <tr>
-                                    <th scope="row">#</th>
-                                    <th scope="col">Команда</th>
-                                    <th scope="col">И</th>
-                                    <th scope="col">В</th>
-                                    <th scope="col">Н</th>
-                                    <th scope="col">П</th>
-                                    <th scope="col">З</th>
-                                    <th scope="col">Пр</th>
-                                    <th scope="col">Разница</th>
-                                    <th scope="col">Очки</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for key,val in team.items %}
-                                    <tr>
-                                        <td scope="row" width="1%">{{ key }}</td>
-                                        <td scope="row" width="30%" style="width: 124px">
-                                            <div class="container" style="display: inline-flex;">
+                           <table class="table">
+            <thead class="blue white-text">
+            <tr>
+                <th scope="row">#</th>
+                <th scope="col">Команда</th>
+                <th scope="col">И</th>
+                <th scope="col">В</th>
+                <th scope="col">Н</th>
+                <th scope="col">П</th>
+                <th scope="col">З</th>
+                <th scope="col">Пр</th>
+                <th scope="col">Очки</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key,val in team.items %}
+                <tr>
+                    <td scope="row" width="1%">{{ val.rank }}</td>
+                    <td scope="row" width="30%" style="width: 124px">
 
-                                                <img src="{{ val.logo }}" style="height: 20%;width: 20%; "/>
-                                                <p style="display: inline-block;
+
+
+                            <p style="display: inline-block;
    margin-left: 8px;">{{ val.teamName }}</p>
-                                            </div>
-                                        </td>
-                                        <td scope="row" width="10%">{{ val.play }}</td>
-                                        <td scope="row" width="10%">{{ val.win }}</td>
-                                        <td scope="row" width="10%">{{ val.draw }}</td>
-                                        <td scope="row" width="10%">{{ val.lose }}</td>
-                                        <td scope="row " width="10%">{{ val.goalsFor }}</td>
-                                        <td scope="row" width="10%">{{ val.goalsAgainst }}</td>
-                                        <td scope="row" width="10%">{{ val.goalsDiff }}</td>
-                                        <td scope="row" width="10%">{{ val.points }}</td>
+
+                    </td>
+                    <td scope="row" width="10%">{{ val.matchsPlayed }}</td>
+                    <td scope="row" width="10%">{{ val.win }}</td>
+                    <td scope="row" width="10%">{{ val.draw }}</td>
+                    <td scope="row" width="10%">{{ val.lose }}</td>
+                    <td scope="row" width="10%">{{ val.goalsFor }}</td>
+                    <td scope="row" width="10%">{{ val.goalsAgainst }}</td>
+                    <td scope="row" width="10%">{{ val.points }}</td>
 
 
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
                         </div>
                     </div>
 

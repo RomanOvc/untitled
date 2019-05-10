@@ -9,15 +9,17 @@
         {% if user.is_superuser %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/index/"> A.J.Auxerre</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href=""><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
-                        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
-                        </li>
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="nav navbar-nav nav-fill w-100" style="justify-content: flex-end;">
+                        <ul class="nav navbar-nav navbar-right" style="justify-content: flex-end;">
+                            <li style="padding-right: 10px;"><span class="glyphicon glyphicon-user"></span> {{ user.username }}</li>
+                            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                            </li>
+                        </ul>
                     </ul>
                 </div>
             </nav>
@@ -44,74 +46,55 @@
         {% else %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/index/"> A.J.Auxerre</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href=""><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="nav navbar-nav nav-fill w-100" style="justify-content: flex-end;">
+                        <li style="padding-right: 10px;"><a href=""><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
                         <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <div class="row">
+            <div class="container">
+                <div class="row">
 
 
-                {% if matchs1.count > 0 %}
-                    {% for match in matchs1 %}
+                    {% if matchs1.count > 0 %}
+                        {% for match in matchs1 %}
+                            <div class="container col-lg-6" style="text-align: -webkit-center;">
+                            {% include "components/match_item.html" with match=match buy_button=False %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
 
 
-                        <table style="width: 300px">
-                            <tr>
-                                <td><p style="text-align: center">{{ match.home_team }}</p></td>
-                                <td><p style="text-align: center">{{ match.guest_team }}</p></td>
-                            </tr>
-                            <tr>
-                                <td><img src="/{{ match.home_image }}"/></td>
-                                <td><img src="/{{ match.guest_image }}"/></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="text-align: center"><p>{{ match.data }}/{{ match.time }}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="text-align: center"><p><a href="/home/match/{{ match.id }}"
-                                                                                 class="btn btn-outline-primary">
-                                    buy</a></p>
-                                </td>
-                            </tr>
-                        </table>
+                        <p style="text-align: center">No</p>
 
 
-                    {% endfor %}
-                {% else %}
+                    {% endif %}
 
-
-                    <p style="text-align: center">No</p>
-
-
-                {% endif %}
-
-
+                </div>
+                <hr>
             </div>
 
 
         {% endif %}
+
     {% else %}
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-xl navbar-light bg-light ">
             <a class="navbar-brand" href="/index/"> A.J.Auxerre</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="nav navbar-nav  ">
-                    <li><a href="{% url 'signup' %}"><span class="fas fa-user"></span> Sign Up</a></li>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="nav navbar-nav nav-fill w-100" style="justify-content: flex-end;">
+                    <li style="padding-right: 10px;"><a href="{% url 'signup' %}"><span class="fas fa-user"></span> Sign Up</a></li>
                     <li><a href="{% url 'login' %}"><span class="fas fa-sign-in-alt"></span>Login</a></li>
                 </ul>
             </div>
@@ -119,40 +102,39 @@
 
 
         <div class="container">
-            <p style="text-align: center">Next match</p>
+            <h2 style="text-align: center">Matchs</h2>
             <div class="container">
-                <h2>matchs</h2>
                 <div class="row">
-
-
                     {% if matchs1.count > 0 %}
                         {% for match in matchs1 %}
-                            <table style="width: 300px">
-                                <tr>
-                                    <td><p style="text-align: center">{{ match.home_team }}</p></td>
-                                    <td><p style="text-align: center">{{ match.guest_team }}</p></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="/{{ match.home_image }}"/></td>
-                                    <td><img src="/{{ match.guest_image }}"/></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="text-align: center"><p>{{ match.data }}/{{ match.time }}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="text-align: center"><p><a href="/home/match/{{ match.id }}"
-                                                                                     class="btn btn-outline-primary">
-                                        buy</a></p>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="container col-lg-6" style="text-align: -webkit-center;">
+                                <table style="width: 300px">
+                                    <tr>
+                                        <td><p style="text-align: center">{{ match.home_team }}</p></td>
+                                        <td><p style="text-align: center">{{ match.guest_team }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/{{ match.home_image }}"/></td>
+                                        <td><img src="/{{ match.guest_image }}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center">
+                                            <p>{{ match.data }}/{{ match.time }}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center"><p><a
+                                                href="/home/match/{{ match.id }}"
+                                                class="btn btn-outline-primary">
+                                            buy</a></p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         {% endfor %}
                     {% else %}
                         <p style="text-align: center">No</p>
                     {% endif %}
-
-
                 </div>
                 <hr>
             </div>

@@ -1,4 +1,5 @@
 <div class="container">
+    <button id="buy_button" type="button" class="btn btn-primary">Buy</button>
     <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -11,6 +12,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <button id="lolbutton">LOL!</button>
                     <div class="mpa2">
                         <svg id="svg1" viewBox="0 0 933 1056">
                             <image xlink:href="/static/images/sector.png"></image>
@@ -209,7 +211,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Buy</button>
                 </div>
             </div>
         </div>
@@ -275,6 +276,23 @@
 
             $("path");
 
+            function getCookie(name) {
+                if (!document.cookie) {
+                    return null;
+                }
+                const token = document.cookie.split(';')
+                    .map(c => c.trim())
+                    .filter(c => c.startsWith(name + '='));
+
+                if (token.length === 0) {
+                    return null;
+                }
+                return decodeURIComponent(token[0].split('=')[1]);
+            }
+
+            const csrftoken = getCookie('csrftoken')
+            console.log(csrftoken)
+
             function clickOnSector(event) {
                 this.currentSector = event.target.dataset.sector;
                 if (!this.selectedSeats[this.currentSector]) {
@@ -290,6 +308,10 @@
 
                 console.log("sector:" + this.currentSector + " Row:" + row + " seat:" + seat);
 
+                if (this.allSeats[this.currentSector].find(elem => elem.row == row && elem.seat == seat && elem.status === 1)) {
+                    return;
+                }
+
                 if (this.selectedSeats[this.currentSector].find(elem => elem.row == row && elem.seat == seat)) {
                     let index = this.selectedSeats[this.currentSector].findIndex(elem => elem.row === row && elem.seat === seat);
                     this.selectedSeats[this.currentSector].splice(index, 1);
@@ -299,6 +321,7 @@
                     $(event.target).removeClass("selectedpart");
                     $(event.target).addClass("selectedpart");
                 }
+
             }
 
             function unselectSeatModalOnClose(e) {
@@ -307,35 +330,91 @@
 
             function selectSeatModalOnShow(e) {
                 console.log("Show modal");
+
                 for (obj of this.selectedSeats[this.currentSector]) {
                     $(`*[data-row="${obj.row}"][data-site="${obj.seat}"]`).addClass("selectedpart");
                 }
+
+                for (obj of this.allSeats[this.currentSector]) {
+                    if (obj.status === 1) {
+                        $(`*[data-row="${obj.row}"][data-site="${obj.seat}"]`).addClass("selectedpartnotexist");
+                    }
+
+                }
+            }
+
+            function buyTickets() {
+                {#this.#}
+                const matchId = $("#match_id").val();
+                let coockie = `csrftoken=${getCookie("csrftoken")}; sessionid=${getCookie("sessionid")}`;
+                fetch("http://127.0.0.1:8000/all_site/match/" + matchId + "/buy", {
+                    method: "POST",
+                    body: JSON.stringify(this.selectedSeats),
+                    credentials: 'same-origin',
+                    mode: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                        "Cookie": coockie
+                    },
+                })
+                    .then((response) => {
+                        if (!response.ok){
+                            return response.json()
+                        }
+                        console.log("NICE")
+                    })
+                    .then(json => {
+                        console.log(`Error message:${json.error.message}`);
+                        alert("Yaouredick!!!!");
+                    })
+                    .catch((err) => console.log("BAD"));
+
             }
 
             const context = {
                 currentSector: null,
                 selectedSeats: {},
+                allSeats: {},
                 clickOnSector: clickOnSector,
                 clickOnSeat: clickOnSeat,
                 unselectSeatModalOnClose: unselectSeatModalOnClose,
-                selectSeatModalOnShow: selectSeatModalOnShow
+                selectSeatModalOnShow: selectSeatModalOnShow,
+                buyTickets: buyTickets
 
             };
 
             $("*[data-sector]").click(jQuery.proxy(context.clickOnSector, context));
             $("*[data-row]").click(jQuery.proxy(context.clickOnSeat, context));
+            $("#buy_button").click(jQuery.proxy(context.buyTickets, context));
             $('#exampleModal').on('hidden.bs.modal', jQuery.proxy(context.unselectSeatModalOnClose, context));
             $('#exampleModal').on('show.bs.modal', jQuery.proxy(context.selectSeatModalOnShow, context));
 
             const matchId = $("#match_id").val()
-            if (matchId){
-                fetch("http://127.0.0.1:8000/all_site/match/"+matchId)
+            if (matchId) {
+                fetch("http://127.0.0.1:8000/all_site/match/" + matchId)
                     .then(request => request.json())
-                    .then(json => {
-
-                    })
+                    .then(jQuery.proxy(function (json) {
+                        console.log(json);
+                        for (let seatJson of  json.seats) {
+                            if (!this.allSeats[seatJson.sector]) {
+                                this.allSeats[seatJson.sector] = [];
+                            }
+                            this.allSeats[seatJson.sector].push({
+                                row: seatJson.row,
+                                seat: seatJson.seat,
+                                status: seatJson.status
+                            });
+                        }
+                    }, context))
+                    .catch(err => console.log(err));
             }
-        });
+            $("#lolbutton").click(jQuery.proxy(function () {
+                console.log(this.selectedSeats)
+            }, context));
+        })
+        ;
 
 
     </script>

@@ -1,0 +1,30 @@
+<table style="width: 300px">
+    <tr>
+        <td><p style="text-align: center">{{ match.home_team }}</p></td>
+        <td><p style="text-align: center">{{ match.guest_team }}</p></td>
+    </tr>
+    <tr>
+        <td><img src="/{{ match.home_image }}"/></td>
+        <td><img src="/{{ match.guest_image }}"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center">
+            <p>{{ match.data }}/{{ match.time }}</p>
+        </td>
+    </tr>
+    <tr>
+        {% if buy_button == False %}
+            <td colspan="2" style="text-align: center">
+                <p>
+                    <a href="/home/match/{{ match.id }}" class="btn btn-outline-primary">
+                        buy
+                    </a>
+                </p>
+            </td>
+
+        {% else %}
+
+        {% endif %}
+    </tr>
+    <input id="match_id" value="{{ buy_match.id }}" hidden>
+</table>

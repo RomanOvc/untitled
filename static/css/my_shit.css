@@ -59,7 +59,7 @@
 }
 
 .navbar {
-    z-index: 1;
+    z-index: 999;
 }
 
 html,
@@ -298,6 +298,12 @@ path:hover {
     opacity: 1 !important;
     fill: yellow !important;
 }
+
+.selectedpartnotexist {
+    opacity: 1 !important;
+    fill: red !important;
+}
+
 
 .card-deck .card {
     margin-bottom: 20px;

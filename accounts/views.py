@@ -1,5 +1,6 @@
 import datetime
 import json
+import pprint
 
 import requests
 from django.contrib.auth import authenticate, login
@@ -63,42 +64,64 @@ def index(request):
             matchs = Match_m.objects.exclude(data__lt=data_now)[:2]
         else:
             return HttpResponseNotFound('<p>Error</p>')
-    result_match = requests.get('https://www.api-football.com/demo/api/standings/2')
+    # TODO update API
+    result_match = requests.get('https://www.api-football.com/demo/api/v2/leagueTable/2')
     res = result_match.json()
-    te = res['api']['standings']
-    image_team = requests.get('https://www.api-football.com/demo/api/teams/league/2')
-    res2 = image_team.json()
-    re2 = res2['api']['teams']
+    te = res['api']['standings'][0]
+    # image_team = requests.get('https://www.api-football.com/demo/api/teams/league/2')
+    # res2 = image_team.json()
+    # re2 = res2['api']['teams']
 
     team = {}
-
-    for i in te:
-        xteam = res['api']['standings'][str(i)]['teamName']
-        xteam_id = res['api']['standings'][str(i)]['team_id']
-        ximage = res2['api']['teams'][xteam_id]['logo']
-        xplay = res['api']['standings'][str(i)]['play']
-        xwin = res['api']['standings'][str(i)]['win']
-        xdraw = res['api']['standings'][str(i)]['draw']
-        xlose = res['api']['standings'][str(i)]['lose']
-        xgoalsFor = res['api']['standings'][str(i)]['goalsFor']
-        xgoalsAgainst = res['api']['standings'][str(i)]['goalsAgainst']
-        xgoalsDiff = res['api']['standings'][str(i)]['goalsDiff']
-        xpoints = res['api']['standings'][str(i)]['points']
-
-        team.update({str(i): {
-            'teamName': str(xteam),
-            'team_id': str(xteam_id),
-            'logo': str(ximage),
-            'play': str(xplay),
-            'win': str(xwin),
-            'draw': str(xdraw),
-            'lose': str(xlose),
-            'goalsFor': str(xgoalsFor),
-            'goalsAgainst': str(xgoalsAgainst),
-            'goalsDiff': str(xgoalsDiff),
-            'points': str(xpoints),
+    for key, val in enumerate(te):
+        rank = res['api']['standings'][0][key]['rank']
+        teamName = res['api']['standings'][0][key]['teamName']
+        matchsPlayed = res['api']['standings'][0][key]['all']['matchsPlayed']
+        win = res['api']['standings'][0][key]['all']['win']
+        draw = res['api']['standings'][0][key]['all']['draw']
+        lose = res['api']['standings'][0][key]['all']['lose']
+        goalsAgainst = res['api']['standings'][0][key]['all']['goalsAgainst']
+        goalsFor = res['api']['standings'][0][key]['all']['goalsFor']
+        points = res['api']['standings'][0][key]['points']
+        team.update({key: {
+            'rank': str(rank),
+            'teamName': str(teamName),
+            'matchsPlayed': str(matchsPlayed),
+            'win': str(win),
+            'draw': str(draw),
+            'lose': str(lose),
+            'goalsFor': str(goalsFor),
+            'goalsAgainst': str(goalsAgainst),
+            'points': str(points),
 
         }})
+    # for i in te:
+    #     xteam = res['api']['standings'][0][i]['teamName']
+    #     xteam_id = res['api']['standings'][str(i)]['team_id']
+    #     ximage = res2['api']['teams'][xteam_id]['logo']
+    #     xplay = res['api']['standings'][str(i)]['play']
+    #     xwin = res['api']['standings'][str(i)]['win']
+    #     xdraw = res['api']['standings'][str(i)]['draw']
+    #     xlose = res['api']['standings'][str(i)]['lose']
+    #     xgoalsFor = res['api']['standings'][str(i)]['goalsFor']
+    #     xgoalsAgainst = res['api']['standings'][str(i)]['goalsAgainst']
+    #     xgoalsDiff = res['api']['standings'][str(i)]['goalsDiff']
+    #     xpoints = res['api']['standings'][str(i)]['points']
+    # #
+    # team.update({str(i): {
+    #     'teamName': str(xteam),
+    #         'team_id': str(xteam_id),
+    #         'logo': str(ximage),
+    #         'play': str(xplay),
+    #         'win': str(xwin),
+    #         'draw': str(xdraw),
+    #         'lose': str(xlose),
+    #         'goalsFor': str(xgoalsFor),
+    #         'goalsAgainst': str(xgoalsAgainst),
+    #         'goalsDiff': str(xgoalsDiff),
+    #         'points': str(xpoints),
+    #
+    # }})
 
     return render(request, "header/head.html",
                   {"blogs": blogs,
@@ -107,7 +130,6 @@ def index(request):
                    "matchs": matchs,
                    'te': te,
                    'team': team,
-
                    })
 
     # all news on index
@@ -116,43 +138,67 @@ def index(request):
 def table(request):
     data_now = datetime.date.today()
     matchs = Match_m.objects.exclude(data__lt=data_now)[:1]
-    result_match = requests.get('https://www.api-football.com/demo/api/standings/2')
+    result_match = requests.get('https://www.api-football.com/demo/api/v2/leagueTable/2')
     res = result_match.json()
-    te = res['api']['standings']
-    image_team = requests.get('https://www.api-football.com/demo/api/teams/league/2')
-    res2 = image_team.json()
-    re2 = res2['api']['teams']
+    te = res['api']['standings'][0]
+    # image_team = requests.get('https://www.api-football.com/demo/api/teams/league/2')
+    # res2 = image_team.json()
+    # re2 = res2['api']['teams']
 
     team = {}
-
-    for i in te:
-        xteam = res['api']['standings'][str(i)]['teamName']
-        xteam_id = res['api']['standings'][str(i)]['team_id']
-        ximage = res2['api']['teams'][xteam_id]['logo']
-        xplay = res['api']['standings'][str(i)]['play']
-        xwin = res['api']['standings'][str(i)]['win']
-        xdraw = res['api']['standings'][str(i)]['draw']
-        xlose = res['api']['standings'][str(i)]['lose']
-        xgoalsFor = res['api']['standings'][str(i)]['goalsFor']
-        xgoalsAgainst = res['api']['standings'][str(i)]['goalsAgainst']
-        xgoalsDiff = res['api']['standings'][str(i)]['goalsDiff']
-        xpoints = res['api']['standings'][str(i)]['points']
-
-        team.update({str(i): {
-            'teamName': str(xteam),
-            'team_id': str(xteam_id),
-            'logo': str(ximage),
-            'play': str(xplay),
-            'win': str(xwin),
-            'draw': str(xdraw),
-            'lose': str(xlose),
-            'goalsFor': str(xgoalsFor),
-            'goalsAgainst': str(xgoalsAgainst),
-            'goalsDiff': str(xgoalsDiff),
-            'points': str(xpoints),
+    for key, val in enumerate(te):
+        rank = res['api']['standings'][0][key]['rank']
+        teamName = res['api']['standings'][0][key]['teamName']
+        matchsPlayed = res['api']['standings'][0][key]['all']['matchsPlayed']
+        win = res['api']['standings'][0][key]['all']['win']
+        draw = res['api']['standings'][0][key]['all']['draw']
+        lose = res['api']['standings'][0][key]['all']['lose']
+        goalsAgainst = res['api']['standings'][0][key]['all']['goalsAgainst']
+        goalsFor = res['api']['standings'][0][key]['all']['goalsFor']
+        points = res['api']['standings'][0][key]['points']
+        team.update({key: {
+            'rank': str(rank),
+            'teamName': str(teamName),
+            'matchsPlayed': str(matchsPlayed),
+            'win': str(win),
+            'draw': str(draw),
+            'lose': str(lose),
+            'goalsFor': str(goalsFor),
+            'goalsAgainst': str(goalsAgainst),
+            'points': str(points),
 
         }})
     return render(request, "header/table.html", {'team': team})
+
+
+# this is calendar
+def fixtures_team(request):
+    # https://www.api-football.com/demo/api/v2/fixtures/team/{team_id}
+    result_match = requests.get('https://www.api-football.com/demo/api/v2/fixtures/team/1')
+    res = result_match.json()
+    te = res['api']['fixtures']
+    print(te)
+    fixtur_team = {}
+    for key, val in enumerate(te):
+        round = res['api']['fixtures'][key]['round']
+        round_num = round.split('-')[1]
+        event_date = res['api']['fixtures'][key]['event_date']
+        date_event = event_date.split('T')[0]
+        venue = res['api']['fixtures'][key]['venue']
+        homeTeam = res['api']['fixtures'][key]['homeTeam']['team_name']
+        awayTeam = res['api']['fixtures'][key]['awayTeam']['team_name']
+        score_full_time = res['api']['fixtures'][key]['score']['fulltime']
+        fixtur_team.update({key: {
+            'round': str(round_num),
+            'event_date': str(date_event),
+            # stadium
+            'venue': str(venue),
+            'homeTeam': str(homeTeam),
+            'awayTeam': str(awayTeam),
+            # result
+            'score_full_time': str(score_full_time),
+        }})
+    return render(request, "header/calendar.html", {"fixtur_team": fixtur_team})
 
 
 def all_news(request):
@@ -197,8 +243,38 @@ def all_site(request, id):
         return HttpResponseNotFound("<h2>Person not found</h2>")
 
 
-def calendar(request):
-    return render(request, "header/calendar.html")
+def buy_site(request, id):
+    # request
+    # TODO query match by id and all seats
+    if request.method == "POST":
+        user_info = request.user
+        print(user_info)
+        print(request.user)
+        seats = json.loads(request.body.decode())
+        if seats:
+            for sector, seatarr in seats.items():
+                for seat in seatarr:
+                    ticket = Ticket_selling.objects.get(match_id=id, sector=sector, seat=seat["seat"],
+                                                        row=seat["row"])
+                    if ticket.status == 1:
+                        return HttpResponseNotFound(json.dumps({"error": {"code": 1, "message": "Seat dont exist"}}),
+                                                    content_type='application/json')
+
+            for sector, seatarr in seats.items():
+                for seat in seatarr:
+                    print("seat" + str(seat))
+                    ticket = Ticket_selling.objects.get(match_id=id, sector=sector, seat=seat["seat"],
+                                                        row=seat["row"])
+                    ticket.status = 1
+                    ticket.user_name = user_info.get_username()
+                    ticket.email = user_info.email
+                    ticket.save()
+        else:
+            return HttpResponseNotFound(json.dumps({"lol": "lol"}), content_type='application/json')
+        pprint.pprint(seats)
+        return HttpResponse(json.dumps({"lol": "lol"}), content_type='application/json')
+    else:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
 
 
 def open_new(request, id):

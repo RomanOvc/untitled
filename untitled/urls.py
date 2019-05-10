@@ -44,8 +44,9 @@ urlpatterns = [
     path('academy/', views.academy, name='academy'),
     path('videos/', views.all_video, name='videos'),
     path('table/', views.table, name='table'),
-    path('calendar/', views.calendar, name='calendar'),
-    path('all_site/match/<int:id>', views.all_site)
+    path('calendar/', views.fixtures_team, name='calendar'),
+    path('all_site/match/<int:id>', views.all_site),
+    path('all_site/match/<int:id>/buy', views.buy_site)
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_PATH)

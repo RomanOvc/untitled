@@ -1,17 +1,40 @@
 {% extends "boss.html" %}
 
 {% block content %}
+
     <section>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="container">
                         <hr>
-                        <h2 style="text-align: center"> Расписание матчей</h2>
+                        <h2 style="text-align: center">Календарь матчей</h2>
                         <hr>
                         <div class="row">
-
-
+                            <table class="table">
+                                <thead class="blue white-text">
+                                <tr>
+                                    <th scope="row">№</th>
+                                    <th scope="col">Дата</th>
+                                    <th scope="col">Хозяева</th>
+                                    <th scope="col">Счёт</th>
+                                    <th scope="col">Гости</th>
+                                    <th scope="col">Стадион</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for key,val in fixtur_team.items %}
+                                    <tr>
+                                        <td scope="row" width="1%">{{ val.round }}</td>
+                                        <td scope="row" width="10%">{{ val.event_date }}</td>
+                                        <td scope="row" width="10%">{{ val.homeTeam }}</td>
+                                        <td scope="row" width="10%">{{ val.score_full_time }}</td>
+                                        <td scope="row" width="10%">{{ val.awayTeam }}</td>
+                                        <td scope="row" width="10%">{{ val.venue }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
