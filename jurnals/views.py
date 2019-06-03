@@ -11,7 +11,10 @@ from jurnals.models import Blogs, Coach, Preview_image, Match_m, Video_m, Player
 
 
 # this is admin panel
-
+ 
+  
+   
+   
 @login_required(login_url='/accounts/login/')
 def blogas(request):
     if not request.user.is_superuser:
@@ -43,11 +46,9 @@ def edit(request, id):
     if request.user.is_superuser:
         try:
             form = Blogs.objects.get(id=id)
-
             if request.method == "POST":
                 form.title = request.POST.get("title")
                 form.body = request.POST.get("body")
-
                 form.save()
                 return HttpResponseRedirect("/home/")
             else:

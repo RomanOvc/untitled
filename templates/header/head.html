@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 {% for lol in blogs %}
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="padding: 10px">
                         {% include "elements_index/newsitem.html" with title=lol.title image=lol.image create=lol.create id=lol.id %}
                     </div>
                 {% endfor %}

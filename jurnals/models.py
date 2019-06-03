@@ -136,7 +136,7 @@ class Ticket_selling(models.Model):
     match_id = models.ForeignKey(Match_m, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=100, blank=True)
     email = models.TextField(blank=True)
-    phone = models.CharField(max_length=12,blank=True)
+    phone = models.CharField(max_length=12, blank=True)
     sector = models.CharField(max_length=4)
     row = models.IntegerField()
     seat = models.IntegerField()
@@ -145,5 +145,4 @@ class Ticket_selling(models.Model):
 
 
 class test(models.Model):
-
     field = models.IntegerField()

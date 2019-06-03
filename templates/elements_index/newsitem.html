@@ -1,11 +1,11 @@
 {#created new#}
 <div class="card-content">
-    <div class="card-img">
-        <img src="/{{ image }}" alt="">
+    <div class="card-img newsCard">
+        <img src="/{{ image }}" alt="" style="width: 100%; height: inherit; object-fit: cover;">
         <span><h4>Новость</h4></span>
     </div>
-    <div class="card-desc">
-        <h3 style="align-content: center"><a href="open_new/{{ id }}">{{ title }}</a></h3>
+    <div class="card-desc" style="height: 100px; padding: 10px 10px 10px 10px;">
+        <h3 style="overflow: hidden; text-overflow: ellipsis; align-content: center"><a href="open_new/{{ id }}" style="color: #525252; font-size: 1.2rem; font-weight: 400;">{{ title }}</a></h3>
     </div>
 
 </div>

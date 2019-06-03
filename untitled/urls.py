@@ -36,6 +36,7 @@ urlpatterns = [
     path('administration/', views.administration, name='administration'),
     path('contacts/', views.contact, name='contacts'),
     path('history/', views.history, name='history'),
+
     path('', views.index1),
     path('all_news/', views.all_news, name='all_news'),
     path('all_news/open_new/<int:id>', views.open_new, name='open_new'),

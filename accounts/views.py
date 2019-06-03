@@ -40,7 +40,7 @@ def matchs_calendar(request):
             matchs1 = Match_m.objects.exclude(data__lt=data_now)[:2]
         else:
             return HttpResponseNotFound('<p>Error</p>')
-    return render(request, "home.html", {"matchs1": matchs1})
+    return render(request, "home.html", {'matchs1': matchs1})
 
 
 @login_required(login_url='/accounts/login/')

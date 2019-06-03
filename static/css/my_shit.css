@@ -109,10 +109,11 @@ header,
 
 
 .text-muted {
-    color: white!important;
+    color: white !important;
 }
-.back_color{
-    background: blueviolet!important;
+
+.back_color {
+    background: blueviolet !important;
 }
 
 .text_a {
@@ -569,4 +570,20 @@ path:hover {
 
 .card_wraper:hover .back {
     transform: rotateY(360deg);
+}
+
+.newsCard {
+    width: 100%;
+    height: 150px;
+}
+
+@media screen and (max-width: 768px) {
+    .newsCard {
+        width: 100%;
+        height: 320px !important;
+    }
+}
+
+.dropdown-item:hover {
+    background-color: cornflowerblue;
 }
