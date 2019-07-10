@@ -10,8 +10,8 @@ urlpatterns = [
     path('all_new/', views.blogas, name='admin_panel'),
 
     path('create/', views.create, name='admin_panel/create'),
-    path('edit/<int:id>/', views.edit),
-    path('delete/<int:id>/', views.delete),
+    path('all_new/edit/<int:id>/', views.edit),
+    path('all_new/delete/<int:id>/', views.delete),
     path('success/', success, name='success'),
     path('ckdeditor/', include('ckeditor_uploader.urls')),
 

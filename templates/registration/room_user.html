@@ -1,18 +1,20 @@
 <div class="container">
-    <button id="buy_button" type="button" class="btn btn-primary">Buy</button>
+
+    <a id="buy_button" class="btn btn-outline-primary">Buy</a>
+
     <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sector: </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Sector: B101 </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <button id="lolbutton">LOL!</button>
+
                     <div class="mpa2">
                         <svg id="svg1" viewBox="0 0 933 1056">
                             <image xlink:href="/static/images/sector.png"></image>
@@ -360,14 +362,19 @@
                     },
                 })
                     .then((response) => {
-                        if (!response.ok){
+                        if (!response.ok && response.json != null) {
+
                             return response.json()
                         }
-                        console.log("NICE")
+                        $('#buy_button').attr('href', "/home/");
+                        $('#buy_button').attr('disabled', 'disabled');
+                        console.log("NICE");
+                        alert("ok");
+
                     })
                     .then(json => {
                         console.log(`Error message:${json.error.message}`);
-                        alert("Yaouredick!!!!");
+                        alert("time off!!!!");
                     })
                     .catch((err) => console.log("BAD"));
 

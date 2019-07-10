@@ -38,8 +38,8 @@ def matchs_calendar(request):
     for day_m in day_match:
         if day_m.data.day - data_now.day < 14:
             matchs1 = Match_m.objects.exclude(data__lt=data_now)[:2]
-        else:
-            return HttpResponseNotFound('<p>Error</p>')
+        # else:
+        #     return HttpResponseNotFound('<p>Error</p>')
     return render(request, "home.html", {'matchs1': matchs1})
 
 
@@ -62,16 +62,12 @@ def index(request):
     for day_m in day_match:
         if day_m.data.day - data_now.day < 14:
             matchs = Match_m.objects.exclude(data__lt=data_now)[:2]
-        else:
-            return HttpResponseNotFound('<p>Error</p>')
+        # else:
+            # return HttpResponseNotFound('<p>Error</p>')
     # TODO update API
     result_match = requests.get('https://www.api-football.com/demo/api/v2/leagueTable/2')
     res = result_match.json()
     te = res['api']['standings'][0]
-    # image_team = requests.get('https://www.api-football.com/demo/api/teams/league/2')
-    # res2 = image_team.json()
-    # re2 = res2['api']['teams']
-
     team = {}
     for key, val in enumerate(te):
         rank = res['api']['standings'][0][key]['rank']
@@ -95,34 +91,6 @@ def index(request):
             'points': str(points),
 
         }})
-    # for i in te:
-    #     xteam = res['api']['standings'][0][i]['teamName']
-    #     xteam_id = res['api']['standings'][str(i)]['team_id']
-    #     ximage = res2['api']['teams'][xteam_id]['logo']
-    #     xplay = res['api']['standings'][str(i)]['play']
-    #     xwin = res['api']['standings'][str(i)]['win']
-    #     xdraw = res['api']['standings'][str(i)]['draw']
-    #     xlose = res['api']['standings'][str(i)]['lose']
-    #     xgoalsFor = res['api']['standings'][str(i)]['goalsFor']
-    #     xgoalsAgainst = res['api']['standings'][str(i)]['goalsAgainst']
-    #     xgoalsDiff = res['api']['standings'][str(i)]['goalsDiff']
-    #     xpoints = res['api']['standings'][str(i)]['points']
-    # #
-    # team.update({str(i): {
-    #     'teamName': str(xteam),
-    #         'team_id': str(xteam_id),
-    #         'logo': str(ximage),
-    #         'play': str(xplay),
-    #         'win': str(xwin),
-    #         'draw': str(xdraw),
-    #         'lose': str(xlose),
-    #         'goalsFor': str(xgoalsFor),
-    #         'goalsAgainst': str(xgoalsAgainst),
-    #         'goalsDiff': str(xgoalsDiff),
-    #         'points': str(xpoints),
-    #
-    # }})
-
     return render(request, "header/head.html",
                   {"blogs": blogs,
                    "videos": videos,
@@ -204,7 +172,7 @@ def fixtures_team(request):
 def all_news(request):
     blogs_render = Blogs.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(blogs_render, 1)
+    paginator = Paginator(blogs_render, 10)
     try:
         blogs = paginator.page(page)
     except PageNotAnInteger:
@@ -223,7 +191,6 @@ def all_site(request, id):
     def ticket_rebuild(ticket):
         return ticket["fields"]
         pass
-
     # request
     # TODO query match by id and all seats
     if request.method == "GET":
@@ -268,6 +235,7 @@ def buy_site(request, id):
                     ticket.status = 1
                     ticket.user_name = user_info.get_username()
                     ticket.email = user_info.email
+
                     ticket.save()
         else:
             return HttpResponseNotFound(json.dumps({"lol": "lol"}), content_type='application/json')

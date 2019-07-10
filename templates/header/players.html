@@ -18,7 +18,7 @@
                         <div class="row">
                             {% for player in player_index %}
                                 {% if player.id_player_type.type_player == 'goalkeeper' %}
-                                    <div class="col-md-6" style="padding-top: 30px">
+                                    <div class="col-md-3" style="padding-top: 30px">
                                         <div class="wrapper">
                                             <div class="card_wraper ">
                                                 <div class="front">
@@ -54,7 +54,7 @@
                         <div class="row">
                             {% for player in player_index %}
                                 {% if player.id_player_type.type_player == 'defender' %}
-                                    <div class="col-md-6" style="padding-top: 30px">
+                                    <div class="col-md-3" style="padding-top: 30px">
                                         <div class="wrapper">
                                             <div class="card_wraper ">
                                                 <div class="front">
@@ -89,7 +89,7 @@
                         <div class="row">
                             {% for player in player_index %}
                                 {% if player.id_player_type.type_player == 'midfielder' %}
-                                    <div class="col-md-6" style="padding-top: 30px">
+                                    <div class="col-md-3" style="padding-top: 30px">
                                         <div class="wrapper">
                                             <div class="card_wraper ">
                                                 <div class="front">
@@ -124,7 +124,7 @@
                         <div class="row">
                             {% for player in player_index %}
                                 {% if player.id_player_type.type_player == 'forward' %}
-                                    <div class="col-md-6" style="padding-top: 30px">
+                                    <div class="col-md-3" style="padding-top: 30px">
                                         <div class="wrapper">
                                             <div class="card_wraper ">
                                                 <div class="front">
@@ -138,7 +138,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="back">
                                                     <p style="text-align: center">Сведения об игроке:</p>
                                                     <p> Позиция:{{ player.id_player_type.type_player }}</p>

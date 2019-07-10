@@ -66,7 +66,7 @@ def delete(request, id):
         try:
             blog = Blogs.objects.get(id=id)
             blog.delete()
-            return HttpResponseRedirect("/accounts/admin_panel")
+            return HttpResponseRedirect("/accounts/admin_panel/all_new")
         except Blogs.DoesNotExist:
             return HttpResponseNotFound("<h2>Person not found</h2>")
     else:
@@ -93,7 +93,6 @@ def create_video(request):
     if request.user.is_superuser:
         if request.method == 'POST':
             form = jurnals.forms.VideoForm(request.POST, request.FILES)
-
             if form.is_valid():
                 form.save()
                 return redirect('/home/')
@@ -323,7 +322,7 @@ def add_match(request):
             if form.is_valid():
                 form.save()
                 lol = Match_m.objects.latest('id')
-                for sector in range(101, 103):
+                for sector in range(101, 117):
                     for row in range(1, 11):
                         for seat in range(1, 10):
                             p = Ticket_selling.objects.create(sector='B' + str(sector), row=row, seat=seat,

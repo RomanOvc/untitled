@@ -9,10 +9,11 @@
                         <hr>
                         <h2 style="text-align: center">{{ blog_open.title }}</h2>
                         <hr>
-                        <div class="container">
+                        <div class="container"  style = "text-align: center;">
                             <img src="/{{ blog_open.image }} " width="660" height="300"/>
                         </div>
-                        <div class="container">
+                    <br>
+                        <div class="container" style = "text-align: justify;">
                             {% autoescape off%}
                             {{ blog_open.body }}
                             {% endautoescape %}
